@@ -1,0 +1,59 @@
+---
+title: "Fin6470_Annotated_Bib"
+author: "Tyson Clark"
+date: "February 7, 2019"
+output: pdf_document
+bibliography: ./annot.bib
+---
+
+@Culp2009 "The Social Functions of Derivatives Markets""
+
+Culp draws a great parallel between information and derivatives markets. New price information is reflected in derivatives markets first, showing the importance that derivatives markets have for the secondary market as a whole. I found the story of orange juice futures to be really enlightening. It is absolutely remarkable that a financial market can predict weather patterns better than trained meteorologists, simply because of the information provided through prices.
+\newline
+It was interesting to me that commodities are shown to have similar Sharpe ratios to stocks and bonds, though their correlation is negative. In my mind, the economy as a whole should move in equilibrium, and I would be interested to research further into why commodities are different from stocks and bonds, and how information is encorporated into the commodities markets differently.
+
+@Culp2011b "Appendix 1 - Economic Theory and Equilibrium" 
+
+Determining 'what is equilibrium' is at the heart of all of economic theory. Some believe that equilibrium will only be obtained in the long-run, and some believe we are always at equilibrium. Equilibrium is something that plays a part in all other readings we have seen this semester.
+\newline
+Culp mentions classical economists, and how there used to not exist barriers to entry for economists to become influential. Today, only economists at top universities have a real shot of being known for their work. This new barrier to entry has caused a stray from equilibrium, as not all of the information that could be seen regarding economic research is readily available in society.
+
+@Hayek1945 "The Use of Knowledge in Society"
+
+Hayek defines the economic problem as securing the best use of resources known to any members of society. Hayek talks about the knowledge problem, and how we should initially disperse knowledge. I found a great segway into our derivatives class when Hayek talks about jobs done based on knowledge not known by others. This is the daily work of an arbitrageur, namely hedge funds. They make money as they come upon tacit knowledge not known by others.
+\newline
+Hayek states that there is hardly anything that happens in the world that MIGHT not have an effect on prices. We never know what small act somewhere out there will start a chain reaction leading to something that causes even a small movement in some price somewhere. I found this very interesting as knowledge is distributed throughout society, and how prices will act to coordinate the separate actions of different people. This leads back to the discussion of Culp in the social functions of derivatives markets. As price discovery plays its role, knowledge will be dispersed to those involved in the markets.
+
+@Kiesling2015 "The Knowledge Problem"
+
+Kiesling's 'The Knowledge Problem' is commonly associated with 'The Use of Knowledge in Society'. It is clear there is a lot in common with the two papers, though Kiesling enters more in depth about the different types of knowledge. He discusses the complexity knowledge problem and the contextual knowledge problem. He shows that any change in relevant data will distrupt equilibrium, and that individuals make decisions based on their perception. We see how this links closely with Hayek's paper, as perception will be changed as more knowledge is distributed throughout society.
+\newline
+Kiesling makes a distinction between knowledge and information, though I believe in derivatives markets both can be obtained through prices. Both knowledge and information will reflect in prices and give society the ability to disperse this knowledge and use it to its advantage.
+
+@Boettke2002 "Information and Knowledge"
+
+Boettke discussed economics in its Austrian form, and how Austrians found themselves in a strange position regarding the neoclassical way of economic thinking. During the Keynsian revolution, economists also started to question the microeconomic efficiency of markets. Boettke points out that even in the 1930s and 1940s, Mises and Hayek both maintained that their understanding of economics represented the mainstream of economic thinking, and the Austrian school didn't come about until the 1950s.These Austrians refuted the idea of mathematical modeling as the basic tool of economic analysis.
+\newline
+This left economists to analyze action and time regarding market information. Information was separated and spread throughout the economy leaving it to be maximized, as we see a link to 'The Knowledge Problem'. The Austrian school brought about a new way of thinking about markets and the global economy, and how different tools other than mathematics can be used to see how knowledge is incorporated into prices.
+
+@Kennedy1998a "Teaching Undergraduate Econometrics"
+
+Kennedy refutes the idea that students are being properly taught what is statistics. He says students try to look at statistics as a branch of mathematics, and are not being taught how to look at the world through a statistical lens. He focuses on one main topic that has been a hole in the curriculum, even with intelligent grad students: the sampling distribution. He focuses on the idea of constructivism, which is the concept of student bringing their own ideas to class looking to add to them, rather than their minds being a blank slate for professors to write upon.
+\newline
+The sampling distribution is an important concept in all of statistics, and without proper knowledge of where it comes from, one cannot understand derivatives markets. Monte Carlo analysis as well as the great Black Scholes model rely upon statistics to determine derivative prices. Kennedy tries to write about how professors should properly teach the sampling distribution, and I believe there is a lot of application to our derivatives class, and reading these papers has helped me develop these statistical applications.
+
+@Kennedy1998b "Using Monte Carlo Studies"
+
+Kennedy's paper on monte carlo studies is very similar to teaching undergraduate econometrics. He goes into detail about the sampling distribution, but in my mind gives a much more explicative example of the sampling distribution given by two professors drawing samples from 2 separate sampling distributions. I found it particularly interesting that Kennedy suggested to professors that they don't have students perform a monte carlo analysis, but instead focus all of their attention on understanding the concept of the sampling distribution, and then discussing the steps of a monte carlo, without actually doing one.
+
+@Culp2011a "Chapter 2: Risk, Uncertainty, and Profit"
+
+Culp opens with a great connection to our course, stating that derivatives are a great way to shift risk over time and space. Culp makes an effort to see how firms deal with an unknown future. This leads us to the discussion of risk and uncertainty. He leads the discussion by referencing a very popular and similar paper by Knight, talking about the difference between risk and uncertainty. The difference between risk and uncertainty, is that with risk the potential outcomes is known, whereas this is impossible with uncertainty. In derivatives we deal with a lot of known unknowns, which is risk, but it is very difficult to hedge for the unknowns unknowns, or uncertainty.
+\newline
+If we have some sort of quantifiable randomness, it is possible to use statistics and something like a monte carlo analysis to determine our risk. These measures of risk have become quite popular, but most still see risk and uncertainty as equals. I believe this is an area where there is money to be made in derivatives markets, by looking at ways to exploit the unknown unknowns.
+
+@Boettke1997 "Where did economics go wrong?"
+
+Boettke first mentions Hayek and where he went wrong, as he is noted as one of the greatest economists of all time. Hayek and Mises apparently didn't respond quickly enough to the separation of the Austrian school and Neoclassical economists. Keynes also didn't respond to Hayek in the right way, leading to a greater separation, and leading to Hayek and Mises being regarded no longer as serious economists. Throughout the years, this gap between the neoclassical and the Austrian school widened, and knowledge failed to be dispersed in a utility maximizing form.
+\newline
+The two even separated views on whether markets operated in equilibrium. This is a very distinct difference, as one viewed the markets as always in equilibrium, with only small deviations from equilibrium, and the other viewed markets as reaching towards equilibrium, but never quite reaching it. In my view, the way we look at market equilibrium will lead to very differing views on arbitrage, and where opportunities will be found. This is where economics has gone wrong, as this difference in opinion leads to inefficient knowledge dispersion and a less liquid market.

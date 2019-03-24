@@ -3,6 +3,7 @@ title: "Tyson_AnnotatedBib_Module2"
 author: "Tyson Clark"
 date: "February 13, 2019"
 output: pdf_document
+bibliography: ./annot_2.bib
 ---
 
 @culp1994hedging Hedging a flow of commodity deliveries with futures: Lessons from Metallgesellschaft
@@ -10,48 +11,41 @@ output: pdf_document
 @culp1995metallgesellschaft Metallgesellschaft and the economics of synthetic storage
 
 MGRM, a conglomerate of Metallgesellschaft, is a contender for the world record loss in derivatives. No one knows why it was liquidated when its margins were called, since it still had fixed-price contracts still in force, but speculation leads us to believe its because the supervisory board believed MGRM wasn't actually hedging as it had said it was, but was speculating on prices, leading them into dangerous territory.
-
 \newline
-
 MGRM was participating in something called 'synthetic storage'. MGRM's derivatives protected the firm and its creditors from risks that spot prices would fluctuate in a way that would lead to a loss. MGRM borrowed oil short and lended long, creating a mismatch between assets and liabilities known to be a financial disaster.
-
 \newline
-
 Oil is different from most commodities, as it has a negative basis. This 'backwardation' occurs when demand for oil is higher than supply. This causes spot prices to rise above futures prices, since firms need oil on hand. Here, it is beneficial to lend short and borrow long. Thus rollover costs must not be judged, as it is the long-term that profits will be made.
-
 \newline
-
 These synthetic storage programs can be recalculated each each period to reflect the arrival of new information. This is a concept we have discussed extensively this semester. Even these synthetic storage programs will try to remain in equilibrium.
-
 \newline
-
 Funding risk, or the inability to produce cash to maintain payments, is another culprit looked at in the MGRM liquidation. Because short-dated futures are more volatile than long-dated, cash inflows and outflows may be larger as well. Because of this, we can assume MGRM wouldn't have extended its contracts unless it thought it had support from its parent, however that thought must have been unwarranted. It is hard to know what actually caused the failure, and if it would have continued if it wasn't liquidated, since it is the only company to attempt this synthetic storage program.
-
 \newline
-
 It would be very interesting to see a new patroleum business attempt what MGRM had. In the oil industry, synthetic storage could lead to good profits should a firm account for operational risks and attempt it as an independent company that can't be shut down by a parent. It is very interesting that oil basis don't seem to stay in equilibrium, and this is a clear arbitrage that MGRM was trying to exploit. 
 
 @murray1994drunk A Drunk and Her Dog
 
 Cointegration is when there exists a stationary linear combination of non-stationary random variables. If we were to see a dog sitting outside a bar before going in, the longer we wait before coming out provides more confusion about where the dog wandered off to. This is an important characteristic of non-stationary variables, that the more periods we go out, the higher the variance.
-
 \newline
-
 Nonstationary series that become stationary when differenced n times are called integrated of order n. For a set of variables to be cointegrated, they must be integrated of the same order. The use of a standard distribution will lead to too few rejections of the null that variables are not co-integrated. When performing analysis, we must instead use a correct distribution.
-
 \newline
-
 If one regresses a stationary variable on a non-stationary variable, the association will go toward 0 in large samples. This cointegration relationship can be applied to derivatives in that the prices of derivatives should be cointegrated with the underlying. Also, many separate derivatives may be cointegrated with one another. For example, oil futures should be cointegrated to some extent with jet fuel.
-
 
 @liu2005price
 
 In the paper they are looking for a cointegrating relationship between futures contracts of hogs, corn and soybeans. All 3 series fail to reject the unit-root test, showing they are non-stationary. Through a first difference test, it can be shown that they are all integrated of order 1, so there is potential for a cointegrated relationship. Since August is the month when summer sales is ending and spring sales is beginning, it is the month left out to avoid the dummy variable trap since the upward or downward trend is unpredictable.
-
 \newline
-
 Looks at inefficiencies in these markets and the arbitrage opportunities. Since hogs feed off of these 2 items for the majority of their meals, they should be cointegrated. When prices of these go up, the prices of hogs go down. The hog spread is short hog and long soybean and corn meal.
-
 \newline
-
 This spread should only provide a profit if the markets are in disequilibrium, otherwise traders would already be accounting for these inefficiencies. 
+
+@bollen1998simulating
+
+Bollen and Whaley write about how MGRM's hedging strategy would have been very profitable should it have been allowed to continue. This is a very opposite view to Pirrong, even with his fancy econometric models. They mention MGRM's stacked hedge, and the overall strategy. I will not get too in depth, as it is covered better in the paper @culp1995metallgesellschaft. 
+\newline
+They argue that some companies with a competitive advantage in a certain market, as MGRM almost definitely did in the petroleum market, would be better off speculating than performing minimum variance hedging. Their stack-and-roll strategy was fit to make a profit from the general backwardation of petroleum.
+\newline
+In the end, they conclude that almost every simulation run holding MGRM's position until completion results in not only a payoff, but a significant one. They show that it was pulled at the worst time just because there was a merk-to-market loss, but should the hedge have held there would have been large profit. Obviously there were scenarios in the left-tail that would have still had losses, but at least in the chart it showed none of those losses would have been as large as the losses taken by exiting the strategy at the time management shut it down.
+
+@williams1982origins The Origin of Futures Markets
+
+Williams states that there is surprisingly little study done about where futures markets emerged, but there is evidence that they grew slowly. The Chicago Board of Trade encorporated official rules regarding futures in 1865. There was however, evidence of contracts stated as 'To arrive', several years prior to this in many commodities such as cotton and butter.

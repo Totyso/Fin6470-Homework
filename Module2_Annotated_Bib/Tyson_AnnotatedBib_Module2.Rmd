@@ -30,7 +30,7 @@ Nonstationary series that become stationary when differenced n times are called 
 \newline
 If one regresses a stationary variable on a non-stationary variable, the association will go toward 0 in large samples. This cointegration relationship can be applied to derivatives in that the prices of derivatives should be cointegrated with the underlying. Also, many separate derivatives may be cointegrated with one another. For example, oil futures should be cointegrated to some extent with jet fuel.
 
-@liu2005price
+@liu2005price Price Relations Among Hog, Corn, and Soybean Meal Futures
 
 In the paper they are looking for a cointegrating relationship between futures contracts of hogs, corn and soybeans. All 3 series fail to reject the unit-root test, showing they are non-stationary. Through a first difference test, it can be shown that they are all integrated of order 1, so there is potential for a cointegrated relationship. Since August is the month when summer sales is ending and spring sales is beginning, it is the month left out to avoid the dummy variable trap since the upward or downward trend is unpredictable.
 \newline
@@ -48,4 +48,6 @@ In the end, they conclude that almost every simulation run holding MGRM's positi
 
 @williams1982origins The Origin of Futures Markets
 
-Williams states that there is surprisingly little study done about where futures markets emerged, but there is evidence that they grew slowly. The Chicago Board of Trade encorporated official rules regarding futures in 1865. There was however, evidence of contracts stated as 'To arrive', several years prior to this in many commodities such as cotton and butter.
+Williams states that there is surprisingly little study done about where futures markets emerged, but there is evidence that they grew slowly. The Chicago Board of Trade encorporated official rules regarding futures in 1865. There was however, evidence of contracts stated as 'To arrive', several years prior to this in many commodities such as cotton and butter. There is even evidence of options traded on futures as early as 1847, which is entirely remarkable.
+\newline
+There is strong evidence in the mid-1800s that futures trading occurred even more often than physical trading. "To-arrive" contracts and future delivery contract volume far exceeded physical volume, even in the dullest of trading days. Rather than increments like the physical markets, futures contracts were traded in round lots of sizes like 100, 500 or 1000. This is evidence that traders weren't interested as much in how much of the commodity they would be receiving, but how easily they could offset the position. This is clear evidence that traders were speculating rather than trading for hedging purposes.

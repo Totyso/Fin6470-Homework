@@ -1,0 +1,2744 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Midterm1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \textbf{1. In class we stated that the equilibrium price of a forward
+contract should behave according to the formula \(F_0=S_0e^{rT}\).
+Demonstrate that this is true using the arbitrage principle. Assume that
+you are dealing with an investment asset that pays no dividends unless
+stated otherwise. Specifically, answer the following:}
+
+    \textbf{(a) Suppose \(F_0 > S_0e^{rT}\). Does this imply an arbitrage
+opportunity? Explain.}
+
+    Yes, there would be an arbitrage opportunity in the market. Since the
+forward and spot contracts are both on the same underlying asset, if
+there were some slight disequilibrium in the pricing of the two
+contracts, there would be an opportunity for arbitrage.
+
+More specifically, in this example, one could simply sell a forward
+contract at time=0, and use the proceeds to buy the underlying in the
+spot market. At time=T, what was purchased at the spot price will be
+delivered to the buyer of the forward contract, realizing a profit due
+to arbitrage.
+
+    \textbf{(b) Now suppose \(F_0 < S_0e^{rT}\). Does this imply an
+arbitrage opportunity? Explain.}
+
+    Yes, there would again be an arbitrage opportunity, for the same reason
+stated in part (a).
+
+This time, one could sell (short) the underlying in the spot market at
+time=0, and use the proceeds to buy a forward contract. At time=T, you
+would collect the underlying from the forward contract and return it to
+close out the short position, realizing a profit.
+
+    \textbf{(c) Now assume that you are dealing with either a
+dividend-paying asset in the form of discrete dollar dividend payments,
+or a continuous dividend yield. How does this change the pricing
+equation? Explain.}
+
+    With continuous dividends, the formula becomes
+\(F_0=S_0e^{(r- \delta) T}\), where \(\delta\) is the dividend yield.
+This is becuase the price of the forward must include a provision for
+dividends, since the forward contract holder will not collect the
+dividends, and thus must pay less for the contract.
+
+    \textbf{(d) Now assume that you are dealing with a consumption commodity
+with storage costs, and that holding the physical commodity has certain
+benefits (i.e. a convenience yield). How does this change the pricing
+equation? Explain.}
+
+    The equation will be just as in part (c), \(F_0=S_0e^{(r- \delta) T}\),
+where \(\delta\) is the convenience yield. As in part (c), the holder of
+the physical commodity has the ability to use the commodity as needed,
+which is why they pay a convenience yield that acts similarly to a
+dividend with a stock, and the forward contract holder will pay less for
+the contract as they are giving up this convenience yield.
+
+    \textbf{(e) In class we argued that all of this depends upon the
+possibility of physical delivery of the contract, which guarantees that
+\(F_T=S_T\),that is that the futures price at maturity is equal to the
+spot price at maturity. First, explain why that is. Second, what would
+happen if \(F_T \neq S_T\)? Carefully explain.}
+
+    At time=T, \(F_T=S_T\) must hold because the two trades would be exact
+substitutes for eachother. In other words, at expiry the futures
+contract now behaves exactly like a spot trade, as the time to expiry is
+0. If this is not the case, there would be a very quick and easy
+arbitrage opportunity. One could simply sell the overpriced contract and
+use the proceeds to buy the underpriced contract, making a profit at
+time=T with no risk and infinite upside. This would occur until supply
+and demand forced the two to return to equilibrium.
+
+    \textbf{(f) Consider a new kind of forward contract called a prepaid
+forward. It is very similar to a standard forward contract. The only
+difference is that the long party pays the short party at time \(t=0\),
+but still takes delivery from the short party at \(t=T\). How must the
+standard pricing formula be modified to properly price the prepaid
+forward? Carefully explain your logic. Why would anyone ever want to
+transact in such a contract? Do we actually see prepaid forward
+contracts in the real world, or only in finance textbooks?}
+
+    A normal forward price is shown to be the future value of the spot
+price, since that is when money will be collected. Since a prepaid
+forward contract seller collects the proceeds at time=0, the price of
+the prepaid forward contract is simply \(F^P_{0,T}=S_0\). The holder of
+the prepaid contract will however also not collect dividends paid, so if
+a discrete dividend were introduced, the formula will change to
+\(F^P_{0,T}=S_0 - \Sigma^n_{i=1} PV_0 D_{t_i}\), and with continuous
+dividends \(F^P_{0,T}=S_0e^{-\delta T}\).
+
+    \textbf{2. In the Midterm folder on Canvas there is a subfolder titled
+Data. In it you will find historical nearby daily settlement futures
+prices as well as daily New York Harbor spot prices for WTI Crude Oil
+for the period 01/01/1992 to 12/31/1993. Using these data answer the
+following questions:}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} Time period of MGRM}
+\end{Verbatim}
+
+
+    \textbf{(a) Test the series for unit roots using the Augmented
+Dickey-Fuller test. Conduct the tests for prices in levels, and first
+price differences. Also conduct the test in log-price levels and
+log-price first differences. What do you conclude? Do any of the series
+contain a unit root? Which ones? Are the results what you expected, or
+did they surprise you?}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{api} \PY{k}{as} \PY{n+nn}{sm}
+         \PY{k+kn}{from} \PY{n+nn}{statsmodels}\PY{n+nn}{.}\PY{n+nn}{tsa}\PY{n+nn}{.}\PY{n+nn}{stattools} \PY{k}{import} \PY{n}{adfuller}
+         \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{stats}
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{linregress}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{n}{rawData} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{WTI\PYZhy{}Prices\PYZhy{}1992\PYZhy{}to\PYZhy{}1993.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{parse\PYZus{}dates}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{rawData}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nplog}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Spot}\PY{p}{)}
+         \PY{n}{rawData}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nplog\PYZus{}futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Futures}\PY{p}{)}
+         \PY{n}{rawData}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}59}]:}          Date   Spot  Futures     nplog  nplog\_futures
+         0  1992-01-02  19.43    19.49  2.966818       2.969902
+         1  1992-01-03  19.22    19.23  2.955951       2.956472
+         2  1992-01-06  19.24    19.21  2.956991       2.955431
+         3  1992-01-07  18.72    18.69  2.929592       2.927989
+         4  1992-01-08  17.95    17.87  2.887590       2.883123
+\end{Verbatim}
+            
+    \emph{Testing spot series for unit-root}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Spot}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -0.280351
+p-value: 0.928241
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I fail to reject the null hypothesis of a unit-root for the spot series,
+showing that it is non-stationary. This is what I expected as it is
+typical of financial data since they have a positive expected return.
+
+    \emph{Testing futures series for unit-root}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Futures}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -0.287451
+p-value: 0.927263
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I also fail to reject the null hypothesis of a unit-root for the futures
+series. This also makes sense, since as we saw in question 1 the futures
+price is just the future value of the spot price, so since the spot
+series is a random walk, the futures series should be as well.
+
+    \emph{Testing spot series first-differences}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{first\PYZus{}dif\PYZus{}spot} \PY{o}{=} \PY{n}{rawData}\PY{o}{.}\PY{n}{Spot}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}spot}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -22.470295
+p-value: 0.000000
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I reject the null hypothesis of a unit-root for the first differenced
+spot series. This is what I expected because returns should be
+integrated of order 0.
+
+    \emph{Testing futures series first-differences}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{first\PYZus{}dif\PYZus{}futures} \PY{o}{=} \PY{n}{rawData}\PY{o}{.}\PY{n}{Futures}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}futures}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -23.392796
+p-value: 0.000000
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I reject the null hypothesis of a unit-root for the first differenced
+futures series. This also is what I expected since the futures prices
+are derived from the spot prices.
+
+    \emph{Testing log-spot series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{nplog}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: 0.024364
+p-value: 0.960501
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I also fail to reject the null in the log series, which makes sense
+because the continuously compounded return should be positive as well,
+so this series should be integrated of order 1.
+
+    \emph{Testing log-futures series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{nplog\PYZus{}futures}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -0.006035
+p-value: 0.958030
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I again fail to reject.
+
+    \emph{Testing log-spot first-differences}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{n}{first\PYZus{}dif\PYZus{}nplog} \PY{o}{=} \PY{n}{rawData}\PY{o}{.}\PY{n}{nplog}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}nplog}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -22.623511
+p-value: 0.000000
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I reject the null.
+
+    \emph{Testing log-futures first-differences}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{first\PYZus{}dif\PYZus{}nplog\PYZus{}futures} \PY{o}{=} \PY{n}{rawData}\PY{o}{.}\PY{n}{nplog\PYZus{}futures}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+         \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}nplog\PYZus{}futures}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -23.604051
+p-value: 0.000000
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    I reject the null.
+
+    Each of the series that is not a first-difference contains a unit-root,
+which is what I expected as explained individually above.
+
+    \textbf{(b) Make time series plots of the series in price levels, first
+differences, log-price levels, and log-price first differences.}
+
+    \emph{Spot/Futures Series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Spot}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Futures}\PY{p}{)}
+         \PY{n}{x}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{y}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot vs. Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_45_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \emph{Spot/Futures First-Differences Series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}spot}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}futures}\PY{p}{)}
+         \PY{n}{x}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot First\PYZhy{}Difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{y}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot vs. Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Futures First\PYZhy{}Difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_47_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \emph{Log Spot/Futures Series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{nplog}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{nplog\PYZus{}futures}\PY{p}{)}
+         \PY{n}{x}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Spot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{y}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot vs. Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_49_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \emph{Log Spot/Futures First-Differences Series}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}nplog}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{first\PYZus{}dif\PYZus{}nplog\PYZus{}futures}\PY{p}{)}
+         \PY{n}{x}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yellow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Spot First\PYZhy{}Difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{y}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot vs. Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{legend}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Futures First\PYZhy{}Difference}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{(c) Carry out the Engle-Granger two-step procedure to test for
+cointegration between the series? What are the results? Are the series
+cointegrated? If so, what is the cointegrating vector? Carefully
+explain.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Spot}\PY{p}{)}
+         \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData}\PY{o}{.}\PY{n}{Futures}\PY{p}{)}
+         \PY{n}{reg} \PY{o}{=} \PY{n}{stats}\PY{o}{.}\PY{n}{linregress}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{)}
+         \PY{n}{uhat} \PY{o}{=} \PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{reg}\PY{o}{.}\PY{n}{intercept} \PY{o}{\PYZhy{}} \PY{n}{reg}\PY{o}{.}\PY{n}{slope} \PY{o}{*} \PY{n}{x}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{resids} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{uhat}\PY{p}{)}
+         \PY{n}{reg}\PY{o}{.}\PY{n}{slope}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}44}]:} 0.9928897176398659
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{n}{result} \PY{o}{=} \PY{n}{adfuller}\PY{p}{(}\PY{n}{resids}\PY{p}{,} \PY{n}{maxlag}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{autolag}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BIC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ADF Statistic: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p\PYZhy{}value: }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical Values:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+         	\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{key}\PY{p}{,} \PY{n}{value}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+ADF Statistic: -14.774878
+p-value: 0.000000
+Critical Values:
+	1\%: -3.444
+	5\%: -2.867
+	10\%: -2.570
+
+    \end{Verbatim}
+
+    The cointegrating vector is {[}1, -0.9929{]}. This shows that the series
+is cointegrated, as there is a parameter 0.9929 that is explaining the
+movement of the basis spread. The ADF Statistic of -14.7749 shows there
+is very strong evidence to reject the null hypothesis of a unit-root in
+the cointegrating relationship. This means there should be a trading
+strategy on the basis of oil should this spread deviate from its
+long-run mean.
+
+    \textbf{(d) Make a plot of the estimated residuals and comment on the
+graph as relates to the issue of of cointegration.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{resids}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_58_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The residuals are mean-reverting, meaning that the series are
+cointegrated and there should be some error-correction model between the
+spot and futures prices of oil.
+
+    \textbf{(e) Using linear regression calculate a rolling minimum-variance
+hedge ratio for each day of 1993 based on 60 prior days observations.
+Plot a time-series of the hedge-ratios. Comment on the nature of the
+plotted series. What does this say about the dynamic stability of the
+hedge ratio?}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}88}]:} \PY{n}{end\PYZus{}1992} \PY{o}{=} \PY{n}{rawData}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{rawData}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1992\PYZhy{}12\PYZhy{}31}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{start\PYZus{}1993} \PY{o}{=} \PY{n}{end\PYZus{}1992}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}122}]:} \PY{n}{rawData\PYZus{}1993} \PY{o}{=} \PY{n}{rawData}\PY{p}{[}\PY{n}{start\PYZus{}1993}\PY{p}{:}\PY{p}{]}
+          \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData\PYZus{}1993}\PY{o}{.}\PY{n}{Spot}\PY{p}{)}
+          \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{rawData\PYZus{}1993}\PY{o}{.}\PY{n}{Futures}\PY{p}{)}
+          
+          \PY{n}{N} \PY{o}{=} \PY{n}{rawData\PYZus{}1993}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          
+          \PY{n}{dS} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          \PY{n}{dF} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}123}]:} \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{60}
+          \PY{n}{L} \PY{o}{=} \PY{n}{N} \PY{o}{\PYZhy{}} \PY{n}{M}
+          \PY{n}{h} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{n}{L}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}128}]:} \PY{n}{ibeg} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{n}{iend} \PY{o}{=} \PY{n}{M}
+          
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{L}\PY{p}{)}\PY{p}{:}
+              \PY{n}{reg} \PY{o}{=} \PY{n}{linregress}\PY{p}{(}\PY{n}{dF}\PY{p}{[}\PY{n}{ibeg}\PY{p}{:}\PY{n}{iend}\PY{p}{]}\PY{p}{,} \PY{n}{dS}\PY{p}{[}\PY{n}{ibeg}\PY{p}{:}\PY{n}{iend}\PY{p}{]}\PY{p}{)}
+              \PY{n}{h}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{reg}\PY{o}{.}\PY{n}{slope}
+              \PY{n}{ibeg} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+              \PY{n}{iend} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}129}]:} \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{h}\PY{p}{)}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{blue}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Daily Hedge Ratio}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Time}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hedge Ratio}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_65_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We see in this time series that the dynamic hedge is very dynamic. The
+hedge varies greatly just in the year 1993. Pirrong argues that this
+minimum variance hedge is the best situation for MGRM, who instead used
+a 1 for 1 hedge ratio. I find it interesting that the ratio does
+approach 1 at multiple points in the minimum variance hedge, but also
+gets down to 0.70. Since MGRM had superior knowledge to the rest of the
+market, a minimum variance hedge would have kept their profits more
+stable, but with the 1 for 1 hedge they had the ability to skew their
+distribution in a positive manner, leading to a much more positive
+expected return while only increasing the left tail by a small amount.
+Though Pirrong does have a point about the dynamic nature of the daily
+hedge, I do not agree with him when he says that MGRM was not hedging by
+using the 1 for 1 ratio.
+
+    \textbf{3. In this problem you will simulate values for spot prices and
+basis for heating oil and gasoline following the models of Bollen and
+Whaley in their paper Simulating Supply (which is in the readings
+file).}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}130}]:} \PY{c+c1}{\PYZsh{} What are they forcing? Equilibrium prices. What\PYZsq{}s an alternative? Equilibrium\PYZhy{}like model with disequilibrium.}
+          \PY{c+c1}{\PYZsh{} Can you simulate from an error\PYZhy{}correction model?}
+          \PY{c+c1}{\PYZsh{} If you were Culp and Miller how would you do this?}
+          \PY{c+c1}{\PYZsh{} In this paper they use the closest future as their spot price. Comment on this.}
+          \PY{c+c1}{\PYZsh{} They estimate these equations by simultaneous maximum likelihood. Take these estimates as written, simulate 45 days.}
+\end{Verbatim}
+
+
+    \textbf{(a) Simulate 45 days of prices for spot and daily settlement
+prices for futures (via the basis equation). Looking at figure 1 in the
+paper use initial values of 0.69 for heating oil and 0.80 for gasoline.
+Use an initial value for heating oil basis of −0.02 and −0.01 for
+gasoline. See Table 2 in the paper for the other parameter values.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{k}{def} \PY{n+nf}{drawCorrelatedNormals}\PY{p}{(}\PY{n}{mn1} \PY{o}{=} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{sd1} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{mn2} \PY{o}{=} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{n}{sd2} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{n}{rho} \PY{o}{=} \PY{l+m+mf}{0.5}\PY{p}{,} \PY{n}{numReps} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+              \PY{n}{z1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{normal}\PY{p}{(}\PY{n}{size}\PY{o}{=}\PY{n}{numReps}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{n}{mn1}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{n}{sd1}\PY{p}{)}
+              \PY{n}{z2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{normal}\PY{p}{(}\PY{n}{size}\PY{o}{=}\PY{n}{numReps}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{n}{mn2}\PY{p}{,} \PY{n}{scale}\PY{o}{=}\PY{n}{sd2}\PY{p}{)}
+              \PY{n}{z2} \PY{o}{=} \PY{n}{rho} \PY{o}{*} \PY{n}{z1} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{n}{rho}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{2.0}\PY{p}{)}\PY{p}{)} \PY{o}{*} \PY{n}{z2}
+              
+              \PY{k}{return} \PY{p}{(}\PY{n}{z1}\PY{p}{,}\PY{n}{z2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}132}]:} \PY{n}{x1}\PY{p}{,} \PY{n}{x2} \PY{o}{=} \PY{n}{drawCorrelatedNormals}\PY{p}{(}\PY{n}{sd1}\PY{o}{=}\PY{l+m+mf}{0.11}\PY{p}{,} \PY{n}{sd2}\PY{o}{=}\PY{l+m+mf}{0.116}\PY{p}{,} \PY{n}{rho}\PY{o}{=}\PY{l+m+mf}{0.705}\PY{p}{,} \PY{n}{numReps}\PY{o}{=}\PY{l+m+mi}{45}\PY{p}{)}
+          \PY{n}{np}\PY{o}{.}\PY{n}{corrcoef}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{x2}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}132}]:} array([[1.        , 0.77356746],
+                 [0.77356746, 1.        ]])
+\end{Verbatim}
+            
+    \emph{Spot Prices}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}133}]:} \PY{n}{a1} \PY{o}{=} \PY{l+m+mf}{0.342}
+          \PY{n}{b1} \PY{o}{=} \PY{l+m+mf}{0.539}
+          \PY{n}{s1} \PY{o}{=} \PY{l+m+mf}{0.11}
+          \PY{n}{S1} \PY{o}{=} \PY{l+m+mf}{0.69}
+          \PY{n}{a2} \PY{o}{=} \PY{l+m+mf}{0.391}
+          \PY{n}{b2} \PY{o}{=} \PY{l+m+mf}{0.560}
+          \PY{n}{s2} \PY{o}{=} \PY{l+m+mf}{0.116}
+          \PY{n}{S2} \PY{o}{=} \PY{l+m+mf}{0.80}
+          \PY{n}{numReps} \PY{o}{=} \PY{l+m+mi}{45}
+          \PY{n}{rho} \PY{o}{=} \PY{l+m+mf}{0.705}
+          
+          \PY{n}{lnSpot1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          \PY{n}{lnSpot2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          
+          \PY{n}{lnSpot1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S1}\PY{p}{)}
+          \PY{n}{lnSpot2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{S2}\PY{p}{)}
+          
+          
+          \PY{n}{z1}\PY{p}{,} \PY{n}{z2} \PY{o}{=} \PY{n}{drawCorrelatedNormals}\PY{p}{(}\PY{n}{sd1}\PY{o}{=}\PY{n}{s1}\PY{p}{,} \PY{n}{sd2}\PY{o}{=}\PY{n}{s2}\PY{p}{,} \PY{n}{rho}\PY{o}{=}\PY{n}{rho}\PY{p}{,} \PY{n}{numReps}\PY{o}{=}\PY{n}{numReps}\PY{p}{)}
+          
+          \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{lnSpot1}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{lnSpot1}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{a1} \PY{o}{*} \PY{p}{(}\PY{n}{b1} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{lnSpot1}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{z1}\PY{p}{[}\PY{n}{t}\PY{p}{]}
+              \PY{n}{lnSpot2}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{lnSpot2}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{a2} \PY{o}{*} \PY{p}{(}\PY{n}{b2} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{lnSpot2}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{z2}\PY{p}{[}\PY{n}{t}\PY{p}{]} 
+          
+          \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot2}\PY{p}{\PYZcb{}}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Days}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Log Spot Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_73_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}134}]:} \PY{n}{ts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}134}]:}    LN Heating Oil  LN Gasoline
+          0       -0.371064    -0.223144
+          1       -0.611514    -0.826852
+          2       -0.658831    -0.688914
+          3       -0.688253    -0.729637
+          4       -0.695852    -0.783716
+\end{Verbatim}
+            
+    \emph{Basis}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}135}]:} \PY{n}{a1} \PY{o}{=} \PY{l+m+mf}{0.663}
+          \PY{n}{b1} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.009}
+          \PY{n}{s1} \PY{o}{=} \PY{l+m+mf}{0.025}
+          \PY{n}{S1} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.02}
+          \PY{n}{a2} \PY{o}{=} \PY{l+m+mf}{0.424}
+          \PY{n}{b2} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.015}
+          \PY{n}{s2} \PY{o}{=} \PY{l+m+mf}{0.029}
+          \PY{n}{S2} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.01}
+          \PY{n}{numReps} \PY{o}{=} \PY{l+m+mi}{45}
+          \PY{n}{rho} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.358}
+          
+          \PY{n}{Basis1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          \PY{n}{Basis2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          
+          \PY{n}{Basis1}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{S1}\PY{p}{)}
+          \PY{n}{Basis2}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{S2}\PY{p}{)}
+          
+          
+          \PY{n}{z1}\PY{p}{,} \PY{n}{z2} \PY{o}{=} \PY{n}{drawCorrelatedNormals}\PY{p}{(}\PY{n}{sd1}\PY{o}{=}\PY{n}{s1}\PY{p}{,} \PY{n}{sd2}\PY{o}{=}\PY{n}{s2}\PY{p}{,} \PY{n}{rho}\PY{o}{=}\PY{n}{rho}\PY{p}{,} \PY{n}{numReps}\PY{o}{=}\PY{n}{numReps}\PY{p}{)}
+          
+          \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{Basis1}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{a1} \PY{o}{*} \PY{n}{Basis1}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{b1} \PY{o}{*} \PY{n}{lnSpot1}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{z1}\PY{p}{[}\PY{n}{t}\PY{p}{]}
+              \PY{n}{Basis2}\PY{p}{[}\PY{n}{t}\PY{p}{]} \PY{o}{=} \PY{n}{a2} \PY{o}{*} \PY{n}{Basis2}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{b2} \PY{o}{*} \PY{n}{lnSpot2}\PY{p}{[}\PY{n}{t}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{z2}\PY{p}{[}\PY{n}{t}\PY{p}{]} 
+          
+          \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis2}\PY{p}{\PYZcb{}}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Days}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Basis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_76_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}136}]:} \PY{n}{ts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}136}]:}    Heating Oil Basis  Gasoline Basis
+          0          -0.020000       -0.010000
+          1           0.009835       -0.002502
+          2           0.042530        0.015678
+          3           0.051823        0.016744
+          4           0.043152        0.045857
+\end{Verbatim}
+            
+    \emph{Futures Prices}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}137}]:} \PY{n}{lnFutures1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          \PY{n}{lnFutures2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{numReps}\PY{p}{)}
+          
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{lnFutures1}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{Basis1}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{lnSpot1}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+              \PY{n}{lnFutures2}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{Basis2}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{n}{lnSpot2}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}138}]:} \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures2}\PY{p}{\PYZcb{}}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Futures Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Days}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Futures Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_80_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}139}]:} \PY{n}{ts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}139}]:}    LN Heating Oil Futures  LN Gasoline Futures
+          0               -0.391064            -0.233144
+          1               -0.601679            -0.829353
+          2               -0.616301            -0.673236
+          3               -0.636430            -0.712892
+          4               -0.652700            -0.737859
+\end{Verbatim}
+            
+    \textbf{(b) Make time series plots labeling the x-axis as date and the
+y-axis as dollar prices. Assume a starting date of November 15, 1991.
+Plot spot prices, basis, and futures prices separately but combining the
+graphs for heating oil and gasoline together for each. Clearly label the
+series in each graph.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}140}]:} \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{date}
+          \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{timedelta}
+          
+          \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{date}\PY{p}{(}\PY{l+m+mi}{1991}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{timedelta}\PY{p}{(}\PY{n}{days}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Spot Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_83_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}141}]:} \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{date}\PY{p}{(}\PY{l+m+mi}{1991}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{timedelta}\PY{p}{(}\PY{n}{days}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Futures Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Futures Prices}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_84_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}142}]:} \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{date}\PY{p}{(}\PY{l+m+mi}{1991}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{timedelta}\PY{p}{(}\PY{n}{days}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{grid}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil and Gasoline Basis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Basis}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_85_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \textbf{(c) For the simulated 45-day period calculate the
+market-to-market cash flows. Assume an initial margin of 10\% and
+variation margin of 85\% of the initial margin. Assume a position of 1
+contract for each position.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}143}]:} \PY{n}{ts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnSpot2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{lnFutures2}\PY{p}{,}\PYZbs{}
+                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Basis}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{n}{Basis2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}} \PY{p}{:} \PY{l+m+mi}{0}\PY{p}{\PYZcb{}}\PY{p}{)}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{date}\PY{p}{(}\PY{l+m+mi}{1991}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{numReps}\PY{p}{)}\PY{p}{:}
+              \PY{n}{ts}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{timedelta}\PY{p}{(}\PY{n}{days}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{n}{ts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{del} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LN Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{n}{ts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}143}]:}             Heating Oil Basis  Gasoline Basis  Heating Oil  Gasoline  \textbackslash{}
+          Date                                                                   
+          1991-11-15          -0.020000       -0.010000     0.690000  0.800000   
+          1991-11-16           0.009835       -0.002502     0.542529  0.437424   
+          1991-11-17           0.042530        0.015678     0.517456  0.502121   
+          1991-11-18           0.051823        0.016744     0.502453  0.482084   
+          1991-11-19           0.043152        0.045857     0.498649  0.456706   
+          
+                      Heating Oil Futures  Gasoline Futures  
+          Date                                               
+          1991-11-15             0.676337          0.792040  
+          1991-11-16             0.547891          0.436331  
+          1991-11-17             0.539938          0.510055  
+          1991-11-18             0.529178          0.490224  
+          1991-11-19             0.520638          0.478137  
+\end{Verbatim}
+            
+    \emph{Mark-to-Market Heating Oil Futures Position}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}144}]:} \PY{k}{class} \PY{n+nc}{MarginAccount}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{spot\PYZus{}price}\PY{p}{,} \PY{n}{init\PYZus{}margin}\PY{p}{,} \PY{n}{var\PYZus{}margin}\PY{p}{,} \PY{n}{num\PYZus{}contracts}\PY{p}{,} \PY{n}{units}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price} \PY{o}{=} \PY{n}{spot\PYZus{}price}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}margin} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}var\PYZus{}margin} \PY{o}{=} \PY{n}{var\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}num\PYZus{}contracts} \PY{o}{=} \PY{n}{num\PYZus{}contracts}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}units} \PY{o}{=} \PY{n}{units}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{l+m+mf}{0.0}
+          
+              \PY{k}{def} \PY{n+nf}{show}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Settlement Price: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Profit: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cumulative Profit: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Capital: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Equity: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Margin Call: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+              \PY{k}{def} \PY{n+nf}{update}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{spot\PYZus{}price}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit} \PY{o}{=} \PY{p}{(}\PY{n}{spot\PYZus{}price} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}num\PYZus{}contracts} \PY{o}{*} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}units}\PY{p}{)}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit}
+                  
+                  \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}var\PYZus{}margin}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}margin} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price} \PY{o}{=} \PY{n}{spot\PYZus{}price}
+          
+          
+          \PY{c+c1}{\PYZsh{}\PYZsh{} Main function}
+          
+          \PY{n}{spot0} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{spot\PYZus{}t} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+          \PY{n}{units} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{num\PYZus{}contracts} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{init\PYZus{}margin} \PY{o}{=} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{spot0}
+          \PY{n}{var\PYZus{}margin} \PY{o}{=} \PY{l+m+mf}{0.85} \PY{o}{*} \PY{n}{init\PYZus{}margin}
+          
+          \PY{n}{acc} \PY{o}{=} \PY{n}{MarginAccount}\PY{p}{(}\PY{n}{spot0}\PY{p}{,} \PY{n}{init\PYZus{}margin}\PY{p}{,} \PY{n}{var\PYZus{}margin}\PY{p}{,} \PY{n}{num\PYZus{}contracts}\PY{p}{,} \PY{n}{units}\PY{p}{)} 
+          
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{spot} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{spot\PYZus{}t}\PY{p}{)}\PY{p}{:}
+              \PY{n}{acc}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{spot}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Day t=}\PY{l+s+si}{\PYZob{}0:d\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{acc}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Day t=1
+--------
+Settlement Price: 	0.55
+Profit: 		-0.13
+Cumulative Profit: 	-0.13
+Capital: 		0.20
+Equity: 		-0.06
+Margin Call: 		0.13
+
+
+Day t=2
+--------
+Settlement Price: 	0.54
+Profit: 		-0.01
+Cumulative Profit: 	-0.14
+Capital: 		0.20
+Equity: 		0.06
+Margin Call: 		0.00
+
+
+Day t=3
+--------
+Settlement Price: 	0.53
+Profit: 		-0.01
+Cumulative Profit: 	-0.15
+Capital: 		0.21
+Equity: 		0.05
+Margin Call: 		0.02
+
+
+Day t=4
+--------
+Settlement Price: 	0.52
+Profit: 		-0.01
+Cumulative Profit: 	-0.16
+Capital: 		0.21
+Equity: 		0.06
+Margin Call: 		0.00
+
+
+Day t=5
+--------
+Settlement Price: 	0.71
+Profit: 		0.19
+Cumulative Profit: 	0.03
+Capital: 		0.21
+Equity: 		0.24
+Margin Call: 		0.00
+
+
+Day t=6
+--------
+Settlement Price: 	0.61
+Profit: 		-0.10
+Cumulative Profit: 	-0.07
+Capital: 		0.21
+Equity: 		0.15
+Margin Call: 		0.00
+
+
+Day t=7
+--------
+Settlement Price: 	0.65
+Profit: 		0.04
+Cumulative Profit: 	-0.03
+Capital: 		0.21
+Equity: 		0.19
+Margin Call: 		0.00
+
+
+Day t=8
+--------
+Settlement Price: 	0.61
+Profit: 		-0.04
+Cumulative Profit: 	-0.07
+Capital: 		0.21
+Equity: 		0.15
+Margin Call: 		0.00
+
+
+Day t=9
+--------
+Settlement Price: 	0.55
+Profit: 		-0.06
+Cumulative Profit: 	-0.13
+Capital: 		0.21
+Equity: 		0.09
+Margin Call: 		0.00
+
+
+Day t=10
+--------
+Settlement Price: 	0.55
+Profit: 		0.00
+Cumulative Profit: 	-0.12
+Capital: 		0.21
+Equity: 		0.09
+Margin Call: 		0.00
+
+
+Day t=11
+--------
+Settlement Price: 	0.64
+Profit: 		0.09
+Cumulative Profit: 	-0.04
+Capital: 		0.21
+Equity: 		0.18
+Margin Call: 		0.00
+
+
+Day t=12
+--------
+Settlement Price: 	0.60
+Profit: 		-0.04
+Cumulative Profit: 	-0.08
+Capital: 		0.21
+Equity: 		0.14
+Margin Call: 		0.00
+
+
+Day t=13
+--------
+Settlement Price: 	0.70
+Profit: 		0.10
+Cumulative Profit: 	0.02
+Capital: 		0.21
+Equity: 		0.24
+Margin Call: 		0.00
+
+
+Day t=14
+--------
+Settlement Price: 	0.67
+Profit: 		-0.03
+Cumulative Profit: 	-0.01
+Capital: 		0.21
+Equity: 		0.21
+Margin Call: 		0.00
+
+
+Day t=15
+--------
+Settlement Price: 	0.58
+Profit: 		-0.09
+Cumulative Profit: 	-0.09
+Capital: 		0.21
+Equity: 		0.12
+Margin Call: 		0.00
+
+
+Day t=16
+--------
+Settlement Price: 	0.57
+Profit: 		-0.01
+Cumulative Profit: 	-0.10
+Capital: 		0.21
+Equity: 		0.11
+Margin Call: 		0.00
+
+
+Day t=17
+--------
+Settlement Price: 	0.54
+Profit: 		-0.03
+Cumulative Profit: 	-0.13
+Capital: 		0.21
+Equity: 		0.08
+Margin Call: 		0.00
+
+
+Day t=18
+--------
+Settlement Price: 	0.54
+Profit: 		-0.00
+Cumulative Profit: 	-0.14
+Capital: 		0.21
+Equity: 		0.08
+Margin Call: 		0.00
+
+
+Day t=19
+--------
+Settlement Price: 	0.57
+Profit: 		0.03
+Cumulative Profit: 	-0.11
+Capital: 		0.21
+Equity: 		0.11
+Margin Call: 		0.00
+
+
+Day t=20
+--------
+Settlement Price: 	0.55
+Profit: 		-0.02
+Cumulative Profit: 	-0.12
+Capital: 		0.21
+Equity: 		0.09
+Margin Call: 		0.00
+
+
+Day t=21
+--------
+Settlement Price: 	0.60
+Profit: 		0.04
+Cumulative Profit: 	-0.08
+Capital: 		0.21
+Equity: 		0.14
+Margin Call: 		0.00
+
+
+Day t=22
+--------
+Settlement Price: 	0.58
+Profit: 		-0.02
+Cumulative Profit: 	-0.10
+Capital: 		0.21
+Equity: 		0.11
+Margin Call: 		0.00
+
+
+Day t=23
+--------
+Settlement Price: 	0.61
+Profit: 		0.03
+Cumulative Profit: 	-0.07
+Capital: 		0.21
+Equity: 		0.15
+Margin Call: 		0.00
+
+
+Day t=24
+--------
+Settlement Price: 	0.56
+Profit: 		-0.05
+Cumulative Profit: 	-0.11
+Capital: 		0.21
+Equity: 		0.10
+Margin Call: 		0.00
+
+
+Day t=25
+--------
+Settlement Price: 	0.56
+Profit: 		0.00
+Cumulative Profit: 	-0.11
+Capital: 		0.21
+Equity: 		0.10
+Margin Call: 		0.00
+
+
+Day t=26
+--------
+Settlement Price: 	0.47
+Profit: 		-0.09
+Cumulative Profit: 	-0.20
+Capital: 		0.27
+Equity: 		0.01
+Margin Call: 		0.06
+
+
+Day t=27
+--------
+Settlement Price: 	0.54
+Profit: 		0.07
+Cumulative Profit: 	-0.14
+Capital: 		0.27
+Equity: 		0.13
+Margin Call: 		0.00
+
+
+Day t=28
+--------
+Settlement Price: 	0.54
+Profit: 		0.00
+Cumulative Profit: 	-0.14
+Capital: 		0.27
+Equity: 		0.14
+Margin Call: 		0.00
+
+
+Day t=29
+--------
+Settlement Price: 	0.59
+Profit: 		0.05
+Cumulative Profit: 	-0.09
+Capital: 		0.27
+Equity: 		0.18
+Margin Call: 		0.00
+
+
+Day t=30
+--------
+Settlement Price: 	0.63
+Profit: 		0.05
+Cumulative Profit: 	-0.04
+Capital: 		0.27
+Equity: 		0.23
+Margin Call: 		0.00
+
+
+Day t=31
+--------
+Settlement Price: 	0.57
+Profit: 		-0.06
+Cumulative Profit: 	-0.10
+Capital: 		0.27
+Equity: 		0.17
+Margin Call: 		0.00
+
+
+Day t=32
+--------
+Settlement Price: 	0.57
+Profit: 		0.00
+Cumulative Profit: 	-0.10
+Capital: 		0.27
+Equity: 		0.17
+Margin Call: 		0.00
+
+
+Day t=33
+--------
+Settlement Price: 	0.62
+Profit: 		0.05
+Cumulative Profit: 	-0.05
+Capital: 		0.27
+Equity: 		0.22
+Margin Call: 		0.00
+
+
+Day t=34
+--------
+Settlement Price: 	0.59
+Profit: 		-0.03
+Cumulative Profit: 	-0.08
+Capital: 		0.27
+Equity: 		0.19
+Margin Call: 		0.00
+
+
+Day t=35
+--------
+Settlement Price: 	0.57
+Profit: 		-0.03
+Cumulative Profit: 	-0.11
+Capital: 		0.27
+Equity: 		0.16
+Margin Call: 		0.00
+
+
+Day t=36
+--------
+Settlement Price: 	0.56
+Profit: 		-0.00
+Cumulative Profit: 	-0.11
+Capital: 		0.27
+Equity: 		0.16
+Margin Call: 		0.00
+
+
+Day t=37
+--------
+Settlement Price: 	0.58
+Profit: 		0.02
+Cumulative Profit: 	-0.10
+Capital: 		0.27
+Equity: 		0.18
+Margin Call: 		0.00
+
+
+Day t=38
+--------
+Settlement Price: 	0.67
+Profit: 		0.09
+Cumulative Profit: 	-0.00
+Capital: 		0.27
+Equity: 		0.27
+Margin Call: 		0.00
+
+
+Day t=39
+--------
+Settlement Price: 	0.73
+Profit: 		0.06
+Cumulative Profit: 	0.06
+Capital: 		0.27
+Equity: 		0.33
+Margin Call: 		0.00
+
+
+Day t=40
+--------
+Settlement Price: 	0.67
+Profit: 		-0.06
+Cumulative Profit: 	-0.00
+Capital: 		0.27
+Equity: 		0.27
+Margin Call: 		0.00
+
+
+Day t=41
+--------
+Settlement Price: 	0.67
+Profit: 		-0.00
+Cumulative Profit: 	-0.01
+Capital: 		0.27
+Equity: 		0.27
+Margin Call: 		0.00
+
+
+Day t=42
+--------
+Settlement Price: 	0.67
+Profit: 		-0.00
+Cumulative Profit: 	-0.01
+Capital: 		0.27
+Equity: 		0.27
+Margin Call: 		0.00
+
+
+Day t=43
+--------
+Settlement Price: 	0.65
+Profit: 		-0.02
+Cumulative Profit: 	-0.03
+Capital: 		0.27
+Equity: 		0.25
+Margin Call: 		0.00
+
+
+Day t=44
+--------
+Settlement Price: 	0.60
+Profit: 		-0.05
+Cumulative Profit: 	-0.08
+Capital: 		0.27
+Equity: 		0.20
+Margin Call: 		0.00
+
+
+
+    \end{Verbatim}
+
+    \emph{Mark-to-Market Gasoline Futures Position}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{k}{class} \PY{n+nc}{MarginAccount}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{spot\PYZus{}price}\PY{p}{,} \PY{n}{init\PYZus{}margin}\PY{p}{,} \PY{n}{var\PYZus{}margin}\PY{p}{,} \PY{n}{num\PYZus{}contracts}\PY{p}{,} \PY{n}{units}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price} \PY{o}{=} \PY{n}{spot\PYZus{}price}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}margin} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}var\PYZus{}margin} \PY{o}{=} \PY{n}{var\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}num\PYZus{}contracts} \PY{o}{=} \PY{n}{num\PYZus{}contracts}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}units} \PY{o}{=} \PY{n}{units}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{=} \PY{n}{init\PYZus{}margin}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{l+m+mf}{0.0}
+          
+              \PY{k}{def} \PY{n+nf}{show}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Settlement Price: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Profit: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Cumulative Profit: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Capital: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Equity: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Margin Call: }\PY{l+s+se}{\PYZbs{}t}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+si}{\PYZob{}0:.2f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call}\PY{p}{)}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          
+              \PY{k}{def} \PY{n+nf}{update}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{spot\PYZus{}price}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit} \PY{o}{=} \PY{p}{(}\PY{n}{spot\PYZus{}price} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}num\PYZus{}contracts} \PY{o}{*} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}units}\PY{p}{)}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}profit}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{+} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}cum\PYZus{}profit}
+                  
+                  \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}var\PYZus{}margin}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}init\PYZus{}margin} \PY{o}{\PYZhy{}} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}equity}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call} \PY{o}{=} \PY{l+m+mf}{0.0}
+                  
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}capital} \PY{o}{+}\PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}margin\PYZus{}call}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}ref\PYZus{}price} \PY{o}{=} \PY{n}{spot\PYZus{}price}
+          
+          
+          \PY{c+c1}{\PYZsh{}\PYZsh{} Main function}
+          
+          \PY{n}{spot0} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+          \PY{n}{spot\PYZus{}t} \PY{o}{=} \PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{:}\PY{p}{]}
+          \PY{n}{units} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{num\PYZus{}contracts} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{init\PYZus{}margin} \PY{o}{=} \PY{l+m+mf}{0.1} \PY{o}{*} \PY{n}{spot0}
+          \PY{n}{var\PYZus{}margin} \PY{o}{=} \PY{l+m+mf}{0.85} \PY{o}{*} \PY{n}{init\PYZus{}margin}
+          
+          \PY{n}{acc} \PY{o}{=} \PY{n}{MarginAccount}\PY{p}{(}\PY{n}{spot0}\PY{p}{,} \PY{n}{init\PYZus{}margin}\PY{p}{,} \PY{n}{var\PYZus{}margin}\PY{p}{,} \PY{n}{num\PYZus{}contracts}\PY{p}{,} \PY{n}{units}\PY{p}{)} 
+          
+          \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{spot} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{spot\PYZus{}t}\PY{p}{)}\PY{p}{:}
+              \PY{n}{acc}\PY{o}{.}\PY{n}{update}\PY{p}{(}\PY{n}{spot}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Day t=}\PY{l+s+si}{\PYZob{}0:d\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+              \PY{n}{acc}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Day t=1
+--------
+Settlement Price: 	0.44
+Profit: 		-0.36
+Cumulative Profit: 	-0.36
+Capital: 		0.43
+Equity: 		-0.28
+Margin Call: 		0.36
+
+
+Day t=2
+--------
+Settlement Price: 	0.51
+Profit: 		0.07
+Cumulative Profit: 	-0.28
+Capital: 		0.43
+Equity: 		0.15
+Margin Call: 		0.00
+
+
+Day t=3
+--------
+Settlement Price: 	0.49
+Profit: 		-0.02
+Cumulative Profit: 	-0.30
+Capital: 		0.43
+Equity: 		0.13
+Margin Call: 		0.00
+
+
+Day t=4
+--------
+Settlement Price: 	0.48
+Profit: 		-0.01
+Cumulative Profit: 	-0.31
+Capital: 		0.43
+Equity: 		0.12
+Margin Call: 		0.00
+
+
+Day t=5
+--------
+Settlement Price: 	0.62
+Profit: 		0.14
+Cumulative Profit: 	-0.17
+Capital: 		0.43
+Equity: 		0.26
+Margin Call: 		0.00
+
+
+Day t=6
+--------
+Settlement Price: 	0.57
+Profit: 		-0.05
+Cumulative Profit: 	-0.22
+Capital: 		0.43
+Equity: 		0.22
+Margin Call: 		0.00
+
+
+Day t=7
+--------
+Settlement Price: 	0.63
+Profit: 		0.06
+Cumulative Profit: 	-0.16
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=8
+--------
+Settlement Price: 	0.64
+Profit: 		0.01
+Cumulative Profit: 	-0.15
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=9
+--------
+Settlement Price: 	0.67
+Profit: 		0.03
+Cumulative Profit: 	-0.12
+Capital: 		0.43
+Equity: 		0.31
+Margin Call: 		0.00
+
+
+Day t=10
+--------
+Settlement Price: 	0.70
+Profit: 		0.03
+Cumulative Profit: 	-0.09
+Capital: 		0.43
+Equity: 		0.35
+Margin Call: 		0.00
+
+
+Day t=11
+--------
+Settlement Price: 	0.70
+Profit: 		-0.01
+Cumulative Profit: 	-0.09
+Capital: 		0.43
+Equity: 		0.34
+Margin Call: 		0.00
+
+
+Day t=12
+--------
+Settlement Price: 	0.78
+Profit: 		0.08
+Cumulative Profit: 	-0.01
+Capital: 		0.43
+Equity: 		0.42
+Margin Call: 		0.00
+
+
+Day t=13
+--------
+Settlement Price: 	0.85
+Profit: 		0.07
+Cumulative Profit: 	0.06
+Capital: 		0.43
+Equity: 		0.50
+Margin Call: 		0.00
+
+
+Day t=14
+--------
+Settlement Price: 	0.80
+Profit: 		-0.05
+Cumulative Profit: 	0.01
+Capital: 		0.43
+Equity: 		0.44
+Margin Call: 		0.00
+
+
+Day t=15
+--------
+Settlement Price: 	0.79
+Profit: 		-0.01
+Cumulative Profit: 	0.00
+Capital: 		0.43
+Equity: 		0.44
+Margin Call: 		0.00
+
+
+Day t=16
+--------
+Settlement Price: 	0.88
+Profit: 		0.09
+Cumulative Profit: 	0.09
+Capital: 		0.43
+Equity: 		0.53
+Margin Call: 		0.00
+
+
+Day t=17
+--------
+Settlement Price: 	0.69
+Profit: 		-0.19
+Cumulative Profit: 	-0.10
+Capital: 		0.43
+Equity: 		0.33
+Margin Call: 		0.00
+
+
+Day t=18
+--------
+Settlement Price: 	0.64
+Profit: 		-0.06
+Cumulative Profit: 	-0.16
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=19
+--------
+Settlement Price: 	0.69
+Profit: 		0.06
+Cumulative Profit: 	-0.10
+Capital: 		0.43
+Equity: 		0.33
+Margin Call: 		0.00
+
+
+Day t=20
+--------
+Settlement Price: 	0.63
+Profit: 		-0.06
+Cumulative Profit: 	-0.16
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=21
+--------
+Settlement Price: 	0.72
+Profit: 		0.08
+Cumulative Profit: 	-0.08
+Capital: 		0.43
+Equity: 		0.36
+Margin Call: 		0.00
+
+
+Day t=22
+--------
+Settlement Price: 	0.66
+Profit: 		-0.05
+Cumulative Profit: 	-0.13
+Capital: 		0.43
+Equity: 		0.30
+Margin Call: 		0.00
+
+
+Day t=23
+--------
+Settlement Price: 	0.69
+Profit: 		0.03
+Cumulative Profit: 	-0.10
+Capital: 		0.43
+Equity: 		0.33
+Margin Call: 		0.00
+
+
+Day t=24
+--------
+Settlement Price: 	0.68
+Profit: 		-0.01
+Cumulative Profit: 	-0.11
+Capital: 		0.43
+Equity: 		0.32
+Margin Call: 		0.00
+
+
+Day t=25
+--------
+Settlement Price: 	0.59
+Profit: 		-0.09
+Cumulative Profit: 	-0.20
+Capital: 		0.43
+Equity: 		0.23
+Margin Call: 		0.00
+
+
+Day t=26
+--------
+Settlement Price: 	0.48
+Profit: 		-0.11
+Cumulative Profit: 	-0.31
+Capital: 		0.43
+Equity: 		0.12
+Margin Call: 		0.00
+
+
+Day t=27
+--------
+Settlement Price: 	0.57
+Profit: 		0.09
+Cumulative Profit: 	-0.22
+Capital: 		0.43
+Equity: 		0.21
+Margin Call: 		0.00
+
+
+Day t=28
+--------
+Settlement Price: 	0.61
+Profit: 		0.04
+Cumulative Profit: 	-0.18
+Capital: 		0.43
+Equity: 		0.25
+Margin Call: 		0.00
+
+
+Day t=29
+--------
+Settlement Price: 	0.61
+Profit: 		-0.01
+Cumulative Profit: 	-0.19
+Capital: 		0.43
+Equity: 		0.25
+Margin Call: 		0.00
+
+
+Day t=30
+--------
+Settlement Price: 	0.60
+Profit: 		-0.00
+Cumulative Profit: 	-0.19
+Capital: 		0.43
+Equity: 		0.25
+Margin Call: 		0.00
+
+
+Day t=31
+--------
+Settlement Price: 	0.58
+Profit: 		-0.03
+Cumulative Profit: 	-0.22
+Capital: 		0.43
+Equity: 		0.22
+Margin Call: 		0.00
+
+
+Day t=32
+--------
+Settlement Price: 	0.55
+Profit: 		-0.03
+Cumulative Profit: 	-0.24
+Capital: 		0.43
+Equity: 		0.19
+Margin Call: 		0.00
+
+
+Day t=33
+--------
+Settlement Price: 	0.61
+Profit: 		0.07
+Cumulative Profit: 	-0.18
+Capital: 		0.43
+Equity: 		0.26
+Margin Call: 		0.00
+
+
+Day t=34
+--------
+Settlement Price: 	0.67
+Profit: 		0.05
+Cumulative Profit: 	-0.12
+Capital: 		0.43
+Equity: 		0.31
+Margin Call: 		0.00
+
+
+Day t=35
+--------
+Settlement Price: 	0.64
+Profit: 		-0.03
+Cumulative Profit: 	-0.15
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=36
+--------
+Settlement Price: 	0.66
+Profit: 		0.02
+Cumulative Profit: 	-0.13
+Capital: 		0.43
+Equity: 		0.30
+Margin Call: 		0.00
+
+
+Day t=37
+--------
+Settlement Price: 	0.69
+Profit: 		0.03
+Cumulative Profit: 	-0.10
+Capital: 		0.43
+Equity: 		0.33
+Margin Call: 		0.00
+
+
+Day t=38
+--------
+Settlement Price: 	0.78
+Profit: 		0.09
+Cumulative Profit: 	-0.01
+Capital: 		0.43
+Equity: 		0.42
+Margin Call: 		0.00
+
+
+Day t=39
+--------
+Settlement Price: 	0.87
+Profit: 		0.09
+Cumulative Profit: 	0.08
+Capital: 		0.43
+Equity: 		0.52
+Margin Call: 		0.00
+
+
+Day t=40
+--------
+Settlement Price: 	0.71
+Profit: 		-0.16
+Cumulative Profit: 	-0.08
+Capital: 		0.43
+Equity: 		0.35
+Margin Call: 		0.00
+
+
+Day t=41
+--------
+Settlement Price: 	0.77
+Profit: 		0.06
+Cumulative Profit: 	-0.02
+Capital: 		0.43
+Equity: 		0.41
+Margin Call: 		0.00
+
+
+Day t=42
+--------
+Settlement Price: 	0.64
+Profit: 		-0.13
+Cumulative Profit: 	-0.15
+Capital: 		0.43
+Equity: 		0.28
+Margin Call: 		0.00
+
+
+Day t=43
+--------
+Settlement Price: 	0.66
+Profit: 		0.02
+Cumulative Profit: 	-0.13
+Capital: 		0.43
+Equity: 		0.30
+Margin Call: 		0.00
+
+
+Day t=44
+--------
+Settlement Price: 	0.57
+Profit: 		-0.08
+Cumulative Profit: 	-0.22
+Capital: 		0.43
+Equity: 		0.22
+Margin Call: 		0.00
+
+
+
+    \end{Verbatim}
+
+    \textbf{(d) For the simulated 45-day period calculate a minimum-variance
+hedge ratio for both heating oil and unleaded gasoline.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{ts}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}157}]:}             Heating Oil Basis  Gasoline Basis  Heating Oil  Gasoline  \textbackslash{}
+          Date                                                                   
+          1991-11-15          -0.020000       -0.010000     0.690000  0.800000   
+          1991-11-16           0.009835       -0.002502     0.542529  0.437424   
+          1991-11-17           0.042530        0.015678     0.517456  0.502121   
+          1991-11-18           0.051823        0.016744     0.502453  0.482084   
+          1991-11-19           0.043152        0.045857     0.498649  0.456706   
+          
+                      Heating Oil Futures  Gasoline Futures  
+          Date                                               
+          1991-11-15             0.676337          0.792040  
+          1991-11-16             0.547891          0.436331  
+          1991-11-17             0.539938          0.510055  
+          1991-11-18             0.529178          0.490224  
+          1991-11-19             0.520638          0.478137  
+\end{Verbatim}
+            
+    Heating Oil Hedge Ratio
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heating Oil Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{dS} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          \PY{n}{dF} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}159}]:} \PY{n}{results} \PY{o}{=} \PY{n}{linregress}\PY{p}{(}\PY{n}{dF}\PY{p}{,} \PY{n}{dS}\PY{p}{)}\PY{o}{.}\PY{n}{slope}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}160}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The minimum\PYZhy{}variance hedge ratio for heating oil is }\PY{l+s+si}{\PYZob{}results:0.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The minimum-variance hedge ratio for heating oil is 0.9408
+
+    \end{Verbatim}
+
+    Gasoline Hedge Ratio
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}161}]:} \PY{n}{x} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          \PY{n}{y} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{ts}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Gasoline Futures}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{dS} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          \PY{n}{dF} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{n}{results} \PY{o}{=} \PY{n}{linregress}\PY{p}{(}\PY{n}{dF}\PY{p}{,} \PY{n}{dS}\PY{p}{)}\PY{o}{.}\PY{n}{slope}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}163}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{The minimum\PYZhy{}variance hedge ratio for gasoline is }\PY{l+s+si}{\PYZob{}results:0.4f\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The minimum-variance hedge ratio for gasoline is 0.9381
+
+    \end{Verbatim}
+
+    \textbf{(e) Do the simulated pairs of futures and spot prices appear to
+be cointegrated? Why or why not? What does the Bollen-Whaley model used
+for simulation suggest about cointegration?}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}177}]:} \PY{c+c1}{\PYZsh{} Either for or against for part e, but have a good explanation.}
+          \PY{c+c1}{\PYZsh{} The basis should just be the spread. use F\PYZus{}i,t = S\PYZus{}i,t * e\PYZca{}bi,t}
+\end{Verbatim}
+
+
+    Yes the pairs are cointegrated. Since futures prices are a derivative of
+the underlying, there must be a cointegrating relationship between them,
+which is the basis. The basis is just the spread between the two, or
+\(F_{i,t} = S_{i,t} * e^{b_{i,t}}\). Since this is the case, clearly the
+futures price will move with the spot price.
+
+It can be clearly seen in the graphs above that there is also a
+cointegrating relationship between heating oil and gasoline. The
+relationship is clear in the spot, futures, and the basis.
+
+    \textbf{4. Describe the institutional differences between forward
+markets and futures markets. Describe the historical evolution of
+futures markets and the institutional features that define futures
+markets. Why have they developed the way they have? What market problems
+have they solved?}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}172}]:} \PY{c+c1}{\PYZsh{} Chapter 5 Mcdonald \PYZhy{} Neoclassical perspective}
+\end{Verbatim}
+
+
+    Forwards and futures are different only by a couple of key aspects.
+Forward contracts are between 2 specific parties, rather than through an
+exchange like futures contracts. Also, forward contracts can be
+customized to include very specific features such as quantities to be
+exchanged, dates, or more unique features desired by the traders.
+Futures contracts, since they are traded on an exchange, are
+standardized. This does improve liquidity of the contracts, however, and
+it is much easier to unwind your position.
+
+In his paper 'The Origin of Futures Markets', Williams discusses some
+history of futures markets. The Chicago Board of Trade officially traded
+futures in 1865, however there is evidence of futures trades occuring
+much earlier than that. There were contracts stated as 'To-arrive'
+contracts that look just like futures contracts. These were written on a
+large variety of commodities. There is even evidence of options traded
+on futures contracts as early as 1847.
+
+There is strong evidence in the mid-1800s that futures trading occurred
+even more often than physical trading. 'To-arrive' contracts and future
+delivery contract volume far exceeded physical volume, even in the
+dullest of trading days. Rather than increments like the physical
+markets, futures contracts were traded in round lots of sizes like 100,
+500 or 1000. This is evidence that traders weren't interested as much in
+how much of the commodity they would be receiving, but how easily they
+could offset the position. This is clear evidence that traders were
+speculating rather than trading for hedging purposes.
+
+Since The Chicago Board of Trade officially traded futures, markets have
+grown extensively. There are now futures on commodities, currencies,
+stocks, bonds, and much more. Though markets are much more advanced
+today, there seems to have always been a need to trade forward, and not
+only for hedging, but for speculative purposes. This comes down to
+Hayek's 'The Knowledge Problem'. Futures prices were needed to relay
+information regarding future prices of commodities, and for that reason
+we can see a history of futures markets much further back than many
+studies suggest.
+
+Contrary to most studies, Williams believes that futures markets have
+been in existence for a long time. From the papers we have read thus far
+this semester, I would tend to agree with Williams, even though futures
+exchanges haven't existed for as long as evidence can be shown of
+futures trades.
+
+Williams also argues that there is essentially no difference between
+futures contracts and forward contracts. I will touch on this briefly as
+I have already stated the mechanical difference in the first paragraph.
+In his paper, Williams states that the 'To-arrive' contracts being
+traded were almost standarized, which does point more towards futures
+contracts. Since there are only mechanical differences in these
+contracts, I agree with Williams that they are essentially the same.
+
+Futures exchanges can also rely on a Clearing House to match and
+reconcile trades of futures contracts. The Clearing House will ensure
+financial integrity to remove the risk of non-payment at time=T. The
+Clearinghouse will also increase liquidity, adding to this advantage of
+futures contracts over forward contracts. A Clearing House works by
+depositing large sums of money into a guarantee fund as insurance for
+any potential non-payment. Any clearing members must be members of an
+exchange, and they must purchase shares of the exchange. Any exchange
+members who are not clearing members must clear trades through a
+clearing member and pay a fee.
+
+    \textbf{5. Consider the paper that was presented in class by Liu titled
+Price Relations Among Hog, Corn, and Soybean Meal Futures.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}181}]:} \PY{c+c1}{\PYZsh{} Don\PYZsq{}t use Johansen or Perrong, use Engle\PYZhy{}Granger. Comment on these.}
+          \PY{c+c1}{\PYZsh{} If you were an investor would you invest? Why or why not?}
+          \PY{c+c1}{\PYZsh{} What does Bayes rule have to do with this question? Would it move your prior? What would you be looking at? Enough evidence on predictive density?}
+          \PY{c+c1}{\PYZsh{} Enron reading important here, especially the discussion on Knight\PYZhy{}read this as well}
+          \PY{c+c1}{\PYZsh{} Working paper important}
+          
+          \PY{c+c1}{\PYZsh{} Lecturing birds on flying}
+\end{Verbatim}
+
+
+    \textbf{(a) What were the main empirical findings of the paper? What
+statistical and econometric methods were used by the author? Were you
+persuaded by the author's evidence?}
+
+    The paper first tests each of the three series for stationarity using a
+unit-root test. The results fail to reject the null hypothesis of a
+unit-root. They then first difference each of the respective series and
+subject each first differenced series to the unit-root test and reject
+each at at least the 5\% significance level, suggest each is integrated
+of order 1.
+
+Next, a multivariate cointegration test is used to test if the three
+series are cointegrated. The test we are familiar with from class is the
+Engle-Granger test for cointegration, which uses the residuals from a
+regression of series and subjects them to the Augmented Dickey-Fuller
+test to find if the spread is integrated of order 0. The paper uses more
+advanced econometric models, but rejects the null hypothesis that the
+series are not cointegrated.
+
+The paper finds that lean hog, corn and soybean meal futures are
+cointegrated in the presence of significant time trends and seasonal
+factors. The cointegrating vector results from this test are a little
+different than the Gross Hog Feeding Margin calculated earlier in the
+paper, and this can be explained since farmers don't exclusively feed
+corn and soybean meal to hogs, but also include a variety of other foods
+that aren't available in the futures market to include in the hog
+spread.
+
+The error-correction model is estimated for each of the variations
+included in the spread, and then a strategy is formulated by buying
+(selling) hog when hog is underpriced (overpriced) relative to corn and
+soybean meal and selling (buying) corn and soybean meal. The strategy
+shows there is profit to be made in the strategy.
+
+The strategy works because of inefficiencies in the market for these
+futures. The paper explicitly states that if traders knew of this
+cointegrating relationship between these contracts, the spread would be
+traded until the inefficiencies were taken away, indicating a view that
+markets are not in equilibrium but are working their way towards
+equilibrium, closer to a neoclassical view of market efficiency.
+
+I would not invest in this trading strategy for a few reasons. First,
+though there is a clear cointegrating relationship between hog, corn and
+soybean meal futures, I am wary of all of the possible substitutes for
+either of these food options for hogs. If there were to be a global
+shortage of corn, farmers could easily substitute for one of the many
+other options listed in the paper, which isn't even all-inclusive. So if
+I were to be short hog and long corn and soybean, I don't believe there
+would be a strong enough error-correction in the price of hog to make up
+for the losses that could be endured for extreme conditions that affect
+only corn or soybean supply.
+
+Also, as stated in the paper, as more traders seek this arbitrage
+opportunity, the opportunity will fade. As soon as this paper was
+published, I would believe many arbitrageurs would see if before me and
+start trading the spread. So if I did try to invest, I believe the
+profit to be made would have already dissipated.
+
+Bayes' rule is important here since traders either have a prior view
+that markets are effiecient or they have a prior view that markets are
+inefficient. Prior to this paper, I had a prior belief that markets were
+inefficient, but wouldn't have thought of a trading strategy such as the
+hog spread. The paper did move my prior, as I would not have previously
+thought of trading this spread should it have been suggested to me until
+I saw the econometric models in the paper showing the clear
+cointegrating relationship. The strategy, when implemented from
+1985-2001 is profitable almost 90\% of the times the spread is traded.
+Though this was good evidence, it was not enough out-of-sample evidence
+for me with no clear predictive density to show the real risk inherent
+in the strategy, and is the final reason the paper would not convince me
+to invest my own money in the hog spread.
+
+    \textbf{(b) At the beginning of the course we read the appendix on the
+history of thought on equilibrium concepts in economics from Culp's book
+Risk Transfer, in which the author states ``it becomes quite hard to
+explain a lot of financial and derivatives market activity without being
+a little bit Austrian.'' How does that idea apply to the empirical
+findings of Liu? Do you think that statement is true? Can you give Liu's
+econometric model (the error-correction model) a neo-Austrian
+interpretation?}
+
+    The neo-Classical belief is that markets are in a stationary state of
+equilibrium. If this is the case, there would be no arbitrage
+opportunities in either spot or derivatives markets. Markets would also
+be efficient, and all investors would be best off if they took very
+passive strategies and just invested in the market as a whole.
+Derivatives markets may not even exist, as we see implied in the paper
+by Quintana, Carvalho, Scott, and Costigliola.
+
+Austrians believe that markets trend towards equilibrium. This is what I
+believe is the statement that Culp is trying to make when he says that
+markets can only be explained if you look at it from at least a small
+Austrian perspective. This to me makes a lot more sense, as markets have
+inefficiencies in them that are exploited daily by hedge funds, traders
+and market-makers.
+
+This statement applies to the empirical findings by Liu, as the
+cointegrating relationship between the 3 commodities under scrutiny are
+not constantly in a stationary state, but they trend towards a constant
+spread. This is a clear Austrian view of markets, and shows an arbitrage
+opportunity in the futures markets based on this Austrian
+interpretation.
+
+The error-correction model is a great example of the Austrian
+perspective at work. The lambda paramater works as the error-correction
+variable that pulls the futures prices back into equilibrium. Though
+there will be a mean-reverting trend in the spread, they are not in a
+state of stationary equilibrium, as the neo-Classicals would suggest.
+
+    \textbf{(c) At the end of the paper Liu conducts some trading
+simulations. Outline the methodology that Liu uses to conduct these
+trading simulations. Why is that necessary? Do you find the simulations
+convincing? Would you place real money on his trading model? If not,
+what would it take to convince you that the model really is predictive
+of abnormal profits?}
+
+    Liu's trading simulations are based off of the residuals obtained from
+his error-correction model. He has 4 different simulations where he
+takes the standard deviation of the residuals and multiplies it by 0.25,
+0.5, 0.75, and 1. In each respective model, when the spread between the
+futures prices crosses the upperbound determined by the respective
+multiple, one commodity is sold short and the proceeds are used to
+purchase the other commodity. This is the trigger mentioned in the
+paper. Once the spread returns to its long-run mean, the position is
+reversed, and the profits are realized as shown in table VII. Each
+respective strategy is shown to make money on average, though some
+positions are entered for much longer than others.
+
+It is necessary to conduct these simulations to show that the strategy
+will work out-of-sample, rather than just data-snooping by showing that
+the results would work over the in-sample time period. The simulations
+seem very convincing, with significant returns and very small p-values
+for each respective strategy.
+
+In the time period the paper was written, I would definitely place real
+money on his trading model. The error-correction method shown in the
+paper has great econometrics behind it, and shows that there is a true
+cointegrating relationship between the 3 commodities. The strategy is a
+great way to simulate profits made by a hog breeder, and I believe the
+out-of-sample simulations provide sufficient evidence of abnormal
+returns regardless of the condition of the market. I would be wary,
+however, to invest once the paper is published, as this would result in
+many other traders searching for the same abnormal returns, which could
+take away the arbitrage opportunity and result in 0 or negative profit.
+
+    \textbf{6. In class we discussed the case of oil hedging by
+Metalgesellschaft (MG). In their paper Metalgesellschaft and the
+Economics of Synthetic Storage Culpand Miller defended MG's hedging
+strategy. Pirrong strongly criticized Culp and Miller's findings in his
+paper Metalgesellschaft: Prudent Hedger Ruined, or a Wildcatter on
+NYMEX?. Please answer the following questions about the debate over MG's
+hedging strategy.}
+
+    \textbf{(a) Culp \& Miller called MG's main hedging strategy Synthetic
+Storage. Please outline the basics of this strategy, and explain how it
+differs from risk minimizing hedging. In your explanation, you may want
+to reference the ideas of the economist Holbrook Working cited by Culp
+\& Miller regarding hedging strategies and the motives for hedging.}
+
+    \textbf{(b) One of the main points of disagreement between Culp \&
+Miller and their critics, especially Pirrong, is over the proper hedge
+ratio for MG's hedging strategy. What do you think the correct hedge
+ratio was for MG? Can you outline an empirical strategy for estimating
+the proper hedge ratio? Explain.}
+
+    \textbf{(c) At the end of his paper, Pirrong states ``Given the huge
+losses incurred in late 1993, a Bayesian estimating the probability
+distribution of MG's information advantage would almost certainly place
+little weight on the possibility that the firm was well informed, and
+great weight on the possibility that it did not possess superior
+information, regardless of the charitability of his priors concerning
+the prescience of MG's managers.'' Why do you think Pirrong invokes
+Bayes' Rule? Comment on this statement by Pirrong.}
+
+    \textbf{(d) Relate your answer in part (c) to the concept of the
+predictive distribution. What is the importance of the predictive
+distribution in this hedging application?}
+
+    \textbf{(e) Energy markets such as the oil market are often historically
+characterized by backwardation, but have also had long periods of
+contango. Does that matter for MG's synthetic storage strategy?
+Explain.}
+
+    \textbf{7. Consider the following two papers:}
+
+\begin{verbatim}
+i. Orange Juice and Weather by Richard Roll.
+ii. Is Sound Just Noise? by Coval & Shumway.
+\end{verbatim}
+
+    \textbf{Both papers deal with the informational role of prices in a
+market setting. Relate the findings of each paper to the main idea in
+Hayek's paper The Use of Knowledge in Society. Does the evidence in the
+article support Hayek's main thesis? If so, how? Explain. Be careful to
+give an economic interpretation to any statistical or econometric
+measure used in the article. Also, explain the data that were used in
+the respective study.}
+
+    \textbf{Orange Juice and Weather by Richard Roll}
+
+    Orange Juice and Weather talks about how orange juice futures prices
+reflect information gained through weather reports. Orange juice is a
+great subject for this study, since 98\% of orange juice concentrate in
+the US is produced in the Orlando, Florida region, so weather patterns
+in that region would have a large impact on nationwide orange juice
+prices. The paper specifies that farmers' planting decisions and prices
+of fertilizer and petroleum have minimal if any effect on orange juice
+prices, providing more evidence that the orange juice is right for this
+study of weather.
+
+Hayek's paper about The Knowledge Problem talks about how knowledge can
+best be distributed in society. This paper relates directly in that
+knowledge of the impact of weather patterns can be directly spread
+throughout society through orange juice futures prices. Orange trees in
+Florida cannot handle freezing temperatures for a sustained amount of
+time, and need a substantial amount of rainfall. This means that when
+there is an expected period of freezing temperatures, future supply of
+orange juice will decline, which should have an immediate and
+significant impact on orange juice futures prices.
+
+One more important note before I get into the discussion on the
+relevance of price information reflecting weather patterns is the price
+fluctuation limit imposed on orange juice futures by the exchange. There
+is a limit restricting trading on the futures if there is too large of a
+price fluctuation to limit large gains or losses in a single trading
+day. Though this does theoretically help those with large positions, if
+we look back at Hayek's paper on The Use of Knowledge in Society, this
+is a very inefficient way to deal with the spread of information. When a
+limit is imposed, the days that trading is halted, information flow is
+also halted for the rest of the day and prices are then very inefficient
+though there is no opportunity in the market to gain from the
+inefficiency. The paper deals with this issue by looking at the closing
+prices of the next non-limit day and taking it back to the limit-days to
+try its best to reflect the information, but it is still an inefficiency
+when looked at from Hayek's perspective.
+
+The evidence in the article shows that futures from 2-6 months in range
+do reflect information regarding weather impacts on orange juice futures
+prices. However, there is only a statistically significant impact on
+temperature patterns, particularly when freezing temperatures occur. We
+would have an a priori belief that only freezing temperatures would have
+a significant effect on orange juice futures prices, however
+non-freezing temperature patterns reveal some predictive probability
+that future weather will exhibit freezing temperatures, which explains
+why all available weather information provides predictive information
+for orange juice futures prices.
+
+Rainfall is not as efficient in predicting prices for a couple of
+reasons. First, weather forecasts available to the public only state
+whether or not there will be any amount of rainfall, not the specified
+amounts, leaving great variability in the information conveyed. Second,
+it is much easier to provide more water to oranges if there should be a
+drought, and only very severe conditions like a Hurricane would provide
+enough water to do any damage to orange crops. This is why the
+t-statistic is low when looking at the impact of rainfall forecasts on
+orange juice futures prices.
+
+The data used in the study was the futures prices on orange juice
+concentrate from 2-6 month contracts, as well as public weather
+forecasts on weather patterns. There were separate tables for AM and PM
+information, as most of the predictive power came from the PM forecasts,
+since that is when the freezing temperatures would occur. The paper also
+looked at maximum and minimum forecasts for each day and used lagged
+variables to show the predictive power from one day to the next and the
+possibility of extended freezing temperatures.
+
+Though there is statistical evidence that cold weather does influence
+futures prices, the amount of variation explained is still a small
+amount. In fact Roll looked at many other factors that could potentially
+impact futures prices such as correlation to oil prices, economic
+downturns, and foreign currency exchange rates. Though many of these
+were significant, weather patterns showed the most predictive roll in
+predicting futures prices. Though with all of these factors included in
+the model, only 27\% of the variability in prices was shown, to which
+most is attributed to the temperature forecasts. Going back to Hayek's
+paper, this shows that much more information is being reflected in
+prices that even advanced econometric models can't capture. However, it
+is important to note that the weather patterns are in fact providing
+relevant information to traders regarding price movements.
+
+    \textbf{Is Sound Just Noise? by Coval \& Shumway}
+
+    Is Sound Just Noise? was written in a time period when the majority of
+trading still occurred in trading pits with traders yelling at eachother
+to buy or sell different positions. The study looked at the 30-year
+treasury bond futures trading pit, and tested multiple hypotheses
+regarding information that could be gained from the sound decibel level
+observed in the pit at any given time. They believed that noise was a
+precursor for increased volume, price movements, and decreased depth.
+They also believed it reflected anxiety that traders had to unwind their
+large positions by the end of the day.
+
+The mere hypotheses proposed in this paper are greatly in-line with
+Hayek's notion that available information is shown in prices. Coval and
+Shumway note that as exchanges started shifting more towards electronic
+trading, much of this information would be lost in prices. One example
+given in the paper is when the 10-year treasury note pit was moved about
+25 feet away from the pit under scrutiny. Traders complained that they
+no longer knew what was going on in the recently adjacent pit, and had
+less information to trade on. When screens were placed in their pit to
+try to relay this information, they went unused, showing that it was the
+noise the traders were looking for.
+
+Again referencing Hayek's paper, this noise was one of the most
+efficient ways for traders to relay information through prices. When the
+pits got very loud, this meant there was greater anxiety for traders to
+get their orders filled, and the volume increased to show this, leading
+to more efficient prices.
+
+Looking at the paper from a more technical aspect, each of the
+hypotheses was tested, and then retested with many different lags,
+including the Akaike Information Criterion, and this showed significant
+results that were unchanged by the number of lags chosen. It showed that
+with an increase in the standard deviation of sound of 1, there was a
+17\% increase in the probability of a price change of 2 ticks or
+greater. This is statistically and economically significant. In simpler
+terms, this means that an increase in sound volatility is almost
+definitely reflected in near-future prices.
+
+The study also concluded that sound can predict supply and demand
+schedules, as well as future market depth. However most importantly, it
+shows that traders are not focusing only on readily available
+information such as past prices and news announcements, but are also
+focused on sound, as well as many other unrecognized factors not looked
+at in the paper. This is a notion that Hayek would readily support,
+showing that knowledge is vastly shown in prices.
+
+    \textbf{8. Read the paper Futures markets, Bayesian forecasting and risk
+modeling by Quintana, Carvalho, Scott, and Costigliola. Relate the main
+idea of the paper to the articles that we have read in this course and
+the themes that we have developed. There is a technical aspect to this
+paper. Don't get bogged down in the technical details, instead focus on
+the main ideas and concepts.}
+
+    The main idea of this paper is to discuss whether markets are strong
+form efficient, or in other words they are always in equilibrium, or if
+there are inefficiencies allowing for market-makers to exist. The paper
+takes a strong Bayesian perspective. The paper also suggests, as we have
+discussed in class, that markets are not in equilibrium, but are
+continuously moving towards equilibrium through price discovery as
+traders are incorporating new information into their trades and
+market-makers are setting bid and ask prices appropriately to
+continuously incorporate this new information.
+
+This process is a Bayesian model as market-makers and traders alike are
+constantly updating their Bayesian models to incorporate new information
+and rely less on their priors. The predictive density for payoffs is
+informed and traders can see the probabilistic graph of their possible
+returns.
+
+Unless market incoherencies are identified, the only way to beat the
+market is to increase your risk respective to the market. These
+incoherencies are arbitrage opportunities that are taken by traders that
+help the markets reach equilibrium. These opportunities are also why
+market-makers can exist. Without inefficiencies, trades would be
+essentially extinct as there would be no expected return greater than
+the market return, and traders would have very passive strategies. This
+would cause all trades to be done to occur with no spreads, otherwise
+the trades wouldn't occur, thus eliminating the role of market-makers
+for lack of profitability.
+
+The paper discusses the role that futures markets play as Bayesian
+market-makers by quoting fair prices that represent and incorporate all
+relevant information regarding future expectations of the underlying
+commodities. The paper mentions how individual traders may not have all
+the information, but all the traders together become an intelligent
+market-maker, and this role is reflected in the futures markets.
+According to the effiecient markets hypothesis, this is a state of
+equilibrium whereupon market efficiency cannot be improved.
+
+This futures market as a Bayesian market-maker can be bet against simply
+by buying or selling futures contracts. If you believed markets were in
+disequilibrium as is mentioned in the paper, and all information was not
+reflected in prices, you could buy a futures contract if you believed
+there was information withheld from the market that would increase the
+spot commodity to a price higher than the futures price at expiry, or
+sell a futures contract if you believed there was information moving
+markets in the opposite direction.
+
+This discussion comes back to Hayek's discussion of The Use of Knowledge
+in Society. Hayek believed prices reflected information, and this is
+exactly what is being discussed in this paper. Even if there are
+temporary inefficiencies, traders will act quickly on these
+opportunities and cause markets to push closer to an equilibrium. Hayek
+would agree that the futures market is acting as a single market maker,
+reflecting available information regarding future prices of underlying
+commodities and providing fair trades in the futures prices.
+
+    \textbf{9. In class we have spoken about innovations in the derivatives
+markets. Comment on what you think will be the shape of innovations in
+derivatives markets in the next two decades. What things that are not
+now traded on exchanges, or with derivatives that you think will be? How
+will this facilitate global commerce? Outline a business strategy that
+does not now exist that you think someday might soon exist if
+derivatives markets are created. What is the role for data and data
+analysis in your proposal?}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} 9}
+        
+        \PY{c+c1}{\PYZsh{} Look at innovation in derivatives markets.}
+        \PY{c+c1}{\PYZsh{} For weather, you can\PYZsq{}t trade the underlying, just derivatives. Does no arbitrage exist?}
+        \PY{c+c1}{\PYZsh{} Pick one and discuss it. Invent a market and why it would be beneficial.}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

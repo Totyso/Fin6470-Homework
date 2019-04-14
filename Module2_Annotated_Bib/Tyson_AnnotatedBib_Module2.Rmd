@@ -8,6 +8,12 @@ bibliography: ./annot_2.bib
 
 @culp1994hedging Hedging a flow of commodity deliveries with futures: Lessons from Metallgesellschaft
 
+Culp and Miler open by stating that contrary to normal thought, or debate among other economists, a company can hedge its long-term exposure to spot prices with short-dated futures. They even show a three-period example as to why it works. Regardless of the movement of spot prices, the strategy is still profitable.
+\newline
+We do see in Bollen and Whaley's paper that there is a possibility of loss throughout the whole hedge, but it is still small and the expected profit is much greater. Any profit maximizing firm would thus want to use the synthetic storage hedge if they possessed the superior information to do so, which MGRM did, as explained by Culp and Miller.
+\newline
+The real risk that was not considered by MGRM was operational risk. This risk is the risk that management and/or creditors of MGRM didn't understand the strategy fully, which is what ended up happening and the 1.3 billion dollar loss was incurred as a result of early termination of the hedge. Because of the large cash requirements at the beginning of the hedge, MGRM should have gotten advanced credit to provide the cash needed should this crunch occur, and the large loss never would have happened. We can learn a lot from the MGRM case.
+
 @culp1995metallgesellschaft Metallgesellschaft and the economics of synthetic storage
 
 MGRM, a conglomerate of Metallgesellschaft, is a contender for the world record loss in derivatives. No one knows why it was liquidated when its margins were called, since it still had fixed-price contracts still in force, but speculation leads us to believe its because the supervisory board believed MGRM wasn't actually hedging as it had said it was, but was speculating on prices, leading them into dangerous territory.
@@ -38,7 +44,7 @@ Looks at inefficiencies in these markets and the arbitrage opportunities. Since 
 \newline
 This spread should only provide a profit if the markets are in disequilibrium, otherwise traders would already be accounting for these inefficiencies. 
 
-@bollen1998simulating
+@bollen1998simulating Simulating Supply
 
 Bollen and Whaley write about how MGRM's hedging strategy would have been very profitable should it have been allowed to continue. This is a very opposite view to Pirrong, even with his fancy econometric models. They mention MGRM's stacked hedge, and the overall strategy. I will not get too in depth, as it is covered better in the paper @culp1995metallgesellschaft. 
 \newline
@@ -51,3 +57,79 @@ In the end, they conclude that almost every simulation run holding MGRM's positi
 Williams states that there is surprisingly little study done about where futures markets emerged, but there is evidence that they grew slowly. The Chicago Board of Trade encorporated official rules regarding futures in 1865. There was however, evidence of contracts stated as 'To arrive', several years prior to this in many commodities such as cotton and butter. There is even evidence of options traded on futures as early as 1847, which is entirely remarkable.
 \newline
 There is strong evidence in the mid-1800s that futures trading occurred even more often than physical trading. "To-arrive" contracts and future delivery contract volume far exceeded physical volume, even in the dullest of trading days. Rather than increments like the physical markets, futures contracts were traded in round lots of sizes like 100, 500 or 1000. This is evidence that traders weren't interested as much in how much of the commodity they would be receiving, but how easily they could offset the position. This is clear evidence that traders were speculating rather than trading for hedging purposes.
+
+@alizadeh2008performance Performance of statistical arbitrage in petroleum futures markets
+
+They look at trading strategies within the energy industry and want to show that inefficiencies can be exploited even when there are large transaction costs. They use an error-correction model to show that cross-matched pairs of petroleum futures contracts have a cointegrating, error-correcting relationship that provides an arbitrage opportunity. In the introduction of the paper, they are directly refuting Hayek's idea that prices reflect all available information. They are saying that prices reflect the knowledge inherent in the market, but with intelligent trading strategies, there are ways to earn abnormal returns.
+\newline
+They do go on to say that oil and other energy futures all react simultaneously when there is a knowledge shock to the market, demonstrating they do believe in the underlying theory imposed by Hayek.
+\newline
+They go through the statistical process to show that each futures price is individually integrated of order 1, showing non-stationary patterns, and then use this information to create error-correction models. They state that with this statistical model, there are limitless numbers of trading strategies that could be implemented.
+\newline
+They continue to show the cointegrating relationships modeled provide a long-run mean-reversion. This is a main theme we have seen during this module, as with the hog spread and many other energy futures cointegration trading strategies.The biggest difference here, is they are using the relationship between different futures contracts in the energy market rather than looking at the relationship between spot and futures. In this way, it is similar to the hog spread strategy which we have seen worked well.
+\newline
+The strategies implemented here are one more example that there are inefficiencies to be found in markets. They found evidence that investors can benefit in small lapses in MA models that allow for gains to be made on the spread.
+
+@culp2003modigliani The Modigliani-Miller Propositions
+
+This paper was written to examine the M&M propositions that a firm's value can be derived by its expected cashflows and real net assets, rather than the company's financial structure and fiscal policies. This is really the heart of corporate finance. This means that financial decisions should have no impact on a firm's value. Sometimes this may be the case, but it is important to think about when these decisions will have an impact on future cashflows, as this would have a direct impact on firm value.
+\newline
+Something I found very interesting in this theory is that the company's capital structure should have no effect on its value. So a highly leveraged firm holding the same assets as a zero leverage firm should have the same value. I find this misleading, as the cashflows of a leveraged firm will be much different, and this is not discussed in the paper.
+\newline
+The paper does list several assumptions that would have to hold for the propositions to be true, and these assumpotions would very rarely if ever hold in the real world. In a sense of risk management this is very important to consider, though I still don't agree with the propositions as a whole due to reasons I stated previously.
+
+@culp2003corporate Corporate Aftershock: The Public Policy Lessons from the Collapse of Enron and Other Major Corporations
+
+In this paper, Culp is talking about Enron and what exactly happened. It was, afterall, one of the biggest company collapses of all time. Culp opens this discussion by talking about how the neo-Austrian view is that markets are constantly in equilibrium. He counters this by mentioning the neo-Austrian view, which is that markets are in a constant state of flux, always getting closer to equilibrium. This is very important as he mentions later, since the strategies that Enron was implementing by becoming a market-maker in the energy industry was based on the fact that markets were in a constant state of flux, and were working their way towards equilibrium.
+\newline
+This is a very important point to bring up in the Enron case, as the Austrian view of markets is the only view that would give merit to the strategy implemented. Obviously Enron had a lot of bad accounting and management practices occuring in the company that caused it to ultimately fail, but the way it was making a market in the spot and futures of energy commodities was absolutely remarkable. The arbitrage opportunities allowed Enron to make a huge abnormal profit that would be revelled to this day had it not had such large faults that led it to bankruptcy.
+\newline
+When Enron took this role of acting as a market maker, they were a perfect candidate as they could set prices to relay knowledge to markets. This all comes back to Hayek and the knowledge problem. Since Enron had knowledge that would be important to markets, markets became much more efficient with Enron putting on this strategy as an intermediate-supply wholesaler.
+\newline
+We can see the inside knowledge that Enron had, as each time (and there were multiple) that Enron tried to implement this strategy and enter different markets other than energy, it failed.
+\newline
+Much like MGRM as we see in the paper by Bollen and Whaley, Enron also entered into what is called synthetic storage with oil contracts. They would enter contracts of spot and future that allowed them to collect the convenience yield for oil without actually having exposure to it. This again could only be implemented because of the knowledge that Enron possessed of the oil markets.
+\newline
+Culp goes on to discuss basis trading and how it only works in a neo-Austrian theory, as it is all based on the fact that markets diverge from equilibrium. The basis trading strategy is to look at the spread of spot and futures contracts and then buy when the spread gets larger than the long-run mean, and wait for the mean-reversion to occur to close out the position. Again, very similar to the strategy by MGRM.
+\newline
+Again, Enron's strategies for synthetic storage and market-making were great. If they had not failed for other reasons, they would still be a large company today. We see proof of this as more and more companies have started to implement these strategies in their respective fields.
+
+@culp1995hedging Hedging in the theory of corporate finance: A reply to our critics
+
+Culp and Miller open by citing Holbrook Working and his explanation of the classical definition of hedging: The risk-minimizing hedge that makes a corporation behave as a risk-averse investor. This is not what MGRM was trying to do. They were engaging in a type of hedging called synthetic storage. This is a debate that we have discussed much in this class, as many people in literature including Pirrong believe that all hedging should be risk-minimizing.
+\newline
+This value-maximizing hedge should be put on by corporations with superior knowledge, which MGRM clearly had in the energy industry. This allows them to maximize their profit rather than minimize risk, which is what any firm capable of doing will choose to do. This hedging strategy changed the volatility of the cashflows for MGRM from the volatility of the spot price to the volatility of the bases, which should have a mean-reverting relationship and be much less volatile, as we have seen in the econometric models in other papers during this module.
+\newline
+This is why MGRM used a 1-for-1 hedge. Obviously, as seen in the Pirrong paper among others, the minimum-variance hedge ratio will be much less than 1, however the synthetic storage that MGRM was looking to exploit called for a 1-for-1 hedge ratio, subject to tailing. The large loss that MGRM took wasn't because of a faulty hedge, it was because management and/or the creditors didn't fully understand the synthetic storage hedge that MGRM was doing, and stopped it too early. If we look at the paper by Bollen and Whaley, they show that the distribution of returns should the strategy be left for the life of the hedge provides much greater chance of large profit, with minimal chance of large losses. I agree with Culp and Miller in their refute against M&P.
+
+@pirrong1997metallgesellschaft Metallgesellschaft: A prudent hedger ruined, or a wildcatter on NYMEX?
+
+Pirrong states that the riskiness of a barrel-for-barrel hedge on crude oil is completely dependent on the dynamics of oil prices. He also states that a variance-minimizing hedge wasn't the only appropriate hedge for MGRM, but that it is a benchmark to compare the risk inherent in other hedging strategies. He then continues to produce his so-called 'best' hedge strategy for MGRM, which is a continually adjusted dynamic hedge ratio. This creates for the firm a synthetic forward position. He argues that since backwardation is a random variable, the hedge ratio should change randomly as well.
+
+Even though Pirrong states that a minimum-variance hedge is not the only optimal hedge for MGRM, he still believes that the definition of hedging is to risk-minimize the strategy, contrary to the belief of Working cited by Culp and Miller. Pirrong employs econometric models to outline a risk-minimizing hedge for MGRM, which is very dynamic in nature. I do not disagree with Pirrong regarding the best strategy for MGRM should they be wanting to minimize the variance of its cash flows, however Pirrong doesn't take into account the risk-neutral situation that MGRM puts itself in as cited by Culp and Miller MGRM acts as a market-maker for oil contracts as it has specialized information that allows it to have a competitive advantage in the oil industry.
+
+Pirrong also believes that many of the assumptions made by Culp and Miller were generous. For example, the discount rate used by Culp and Miller was the 3-month T-bill, even though the rate received by creditors was higher. He also talks about the lack of interpretation regarding the intervention from creditors when they saw the marked-to-market losses incurred by MGRM. He again states that a variance-minimizing hedge would have significantly reduced these risks. I believe Pirrong has a point, especially regarding the creditors that didn't know the finance or econometrics behind the stacked hedge strategy. I believe that this was a risk that MGRM didn't sufficiently incorporate into their strategy of their hedge, though I do still believe it is a hedge as it put them in a risk-neutral position, even if only according to Working's definition.
+
+Depending on what MGRM wanted to do, there are different answers to the question 'what is the correct hedge ratio'. However, knowing the ratio they went with, we can believe that MGRM was not looking for a variance-minimizing hedge, and was rather speculating and wanting a risk-neutral position due to their superior market knowledge.
+
+The empirical strategy outlined by Pirrong regarding the hedge ratio is a dynamic hedge obtained through a very complex econometric model that continues to adapt as new information regarding spot and futures prices are obtained. Pirrong clearly shows that the hedge ratio is significantly less than 1, and this makes sense.
+
+In class we talked about how Pirrong invokes Bayes' Rule at the end of his paper, discussing the prior. Bayes' Rule can be invoked to describe the predictive distribution, which we can see in the paper by Bollen and Whaley. We see that there is a skewed distribution for the stacked hedge, rather than the normal distribution for the variance minimizing hedge. The skew shows in the predictive density that the stacked hedge has a slightly higher probability of an extreme loss, but that the probability of higher returns was much, much higher.
+
+Pirrong invokes Bayes' Rule to offset the belief that MGRM had superior information, as Culp and Miller oft stated in their paper as a main reason that MGRM was able to work as a market-maker. Pirrong wanted to show that regardless of how informed you thought MGRM was after reading Culp and Miller's paper, his econometric models and dynamic hedge stratey created would prove that if MGRM was really informed they would have used a minimum-variance hedge. I believe he is trying to show overconfidence in his models, stating that regardless of the charitability of ones' priors, his models would still show that any informed firm would use a variance-minimizing hedge, but MGRM wasn't trying to minimize its variance, but rather maximize profits, which is what any firm should do.
+
+@ng1996price Price dynamics in refined petroleum spot and futures markets
+
+After price volatility in the spot oil market, there were limits placed on futures because many believed speculation was causing this volatility. They obviously didn't understand the price information that is gained through derivative trading. This paper introduces a new empirical approach to explaining the relationship between spot and futures contracts. It shows the price information of two very important commodities: heating oil and gasoline.
+\newline
+With econometric analysis, the paper shows that virtually all of the price fluctuations in the spot returns can be shown in the spread of the bases of the two commodities. It can also be seen that volatility shocks in futures markets spill over to spot markets, and also last longer in futures markets.
+\newline
+As seen in many other papers, they show there is an error-correcting relationship between these commodities and the spot and futures prices. The error-correcting coefficient is larger when the spread is larger, meaning the spread reverts to its long-run mean much quicker. This shows a clear cointegrating relationship.
+
+@working1953futures Futures Trading and Hedging
+
+Working gives his definition of futures contracts. He refutes the idea that all futures contracts are for future delivery, since some are actually settled in cash. Because of this, he says, futures can also be considered spot contracts. There is a language issue in markets, in that most people think futures and commodities trading are so different, when they are really the same except for the fact that futures are a derivative of the underlying.
+\newline
+The most important aspect of the paper, at least what we have discussed in our course, is that hedging is not just for minimizing the variance of cashflows, but can also be for speculative purposes, even outright arbitrage. This is the idea that has been attacked ruthlessly by critics of MGRM. Culp and Miller, as we have seen in their papers throughout this module, defend Working very well in his definition of hedging and how there are multiple ways to go about hedging that don't all involve minimizing the variance of returns.
+
+\newpage

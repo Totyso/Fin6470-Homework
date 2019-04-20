@@ -132,4 +132,14 @@ Working gives his definition of futures contracts. He refutes the idea that all 
 \newline
 The most important aspect of the paper, at least what we have discussed in our course, is that hedging is not just for minimizing the variance of cashflows, but can also be for speculative purposes, even outright arbitrage. This is the idea that has been attacked ruthlessly by critics of MGRM. Culp and Miller, as we have seen in their papers throughout this module, defend Working very well in his definition of hedging and how there are multiple ways to go about hedging that don't all involve minimizing the variance of returns.
 
+@figlewski1989options Options arbitrage in imperfect markets
+
+Since basic options arbitrage strategies imply frictionless markets, Figlewski looks at market imperfections and the impact of these imperfections on the classic arbitrage strategy. Because of the fact that options should have a no arbitrage relationship to the underlying, options hedging strategies should earn the risk-free rate, however in a real world market, this is not the case due to many of the assumptions of the Black-Scholes model being violated.
+\newline
+One of the biggest problems with the assumptions is that volatility is constant. Obviously in the real world, the volatility is constantly changing. For close to the money options, small changes in volatility lead to drastic changes in the option price. This unknown volatility is also a determinant in the hedge ratio, and leads to issues in this as well.
+\newline
+Probably the largest assumption is no transaction costs. With bid-ask spreads, transactions costs will be very important when implementing hedge strategies. It is also important to note that continuous borrowing at the risk-free rate is not reasonable.
+\newline
+Uses simulation to draw from standard normal distribution to determine proper arbitrage option strategies. The standard deviation is higher than one would expect given all of the assumptions. This shows the imperfections of this strategy. We can then look at the difference from the implied volatility and the realized volatility to determine an arbitrage options trading strategy. This is different than the classical arbitrage strategy gecause it is looking at deviations from the implied volatility, and actually works in the real world. There are huge swings in the prices of options when the volatility is not correctly estimated.
+
 \newpage

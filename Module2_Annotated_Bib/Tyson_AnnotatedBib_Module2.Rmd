@@ -142,4 +142,49 @@ Probably the largest assumption is no transaction costs. With bid-ask spreads, t
 \newline
 Uses simulation to draw from standard normal distribution to determine proper arbitrage option strategies. The standard deviation is higher than one would expect given all of the assumptions. This shows the imperfections of this strategy. We can then look at the difference from the implied volatility and the realized volatility to determine an arbitrage options trading strategy. This is different than the classical arbitrage strategy gecause it is looking at deviations from the implied volatility, and actually works in the real world. There are huge swings in the prices of options when the volatility is not correctly estimated.
 
+@clewlow1997optimal Optimal delta-hedging under transactions costs
+
+We have seen in class that Black-Scholes and the delta-hedging strategy we have discussed assumes that there are no transaction costs. In the real world, we know this is never the case. This paper looks at computational methods to determine the optimal strategy in a world with transaction costs, both fixed and proportional.
+\newline
+In the paper, they assume transaction costs are constant, which may not be the case in the real world, however it is still a better assumption that assuming no transaction costs. Since the Black-Scholes model relies on the fact that there is a perfect hedge that exists for each underlying asset, this must be taken into account when looking at a hedge with transaction costs. The basic hedging strategy will assume constant rebalancing of a portfolio to remain delta-neutral. In a world with transaction costs, however, this will become infinitely negative when rebalancing constantly. The hedger will go bankrupt in milliseconds.
+\newline
+When considereing transaction costs, this paper looks at maximizing expected utility rather than minimizing delta for the hedging strategy. This can alternatively be viewed as minimizing a loss function, which is exactly what a risk-minimizing hedger is looking to do. The paper gets very technical, and I will just mention the model used, which is stochastic optimal control. Under proportional transaction costs, they set bounds within which the delta must be maintained. 
+\newline
+The results of this study are very significant because we can't assume a world with no transaction costs like we see with Black-Scholes. I also find it very helpful that it returns an upper bound and lower bound for which delta must be maintained, rather than an exact number. This allows the hedger to minimize transactions costs because they only have to rebalance when the bounds are crossed.
+
+@doran2007influence The influence of tracking error on volatility premium estimation
+
+Doran is looking at the effect of not considering gamma in a hedger's delta-hedged portfolio. As we saw in class, being short gamma will lead to large losses when there are large fluctuations in the underlying stock price. This shows there is a negative volatility premium for the market-maker, and these large losses are not overcome by small gains when the stock price stays fairly static.
+\newline
+It is first important to understand that a delta-hedge is not a risk-minimizing hedge. All the trader is trying to do is remain delta-neutral. This can lead to an insignificant relationship between the volatility risk premium and the hedged portfolio. This can be overcome by gamma hedging as well.
+\newline
+Gamma hedging is done by also buying an out-of-the-money call or put option to add to a delta-hedged portfolio. The gains from this gamma-hedged portfolio can then be attributed to the volatility risk premium, as was expected with a basic delta-hedged portfolio. The addition of this option eliminates tracking error that can be found in delta-hedged portfolios.
+\newline
+We can see this is a volatility risk premium, but it is not dependent directly on vega. It is, however, dependent on the cross-product of the derivative of volatility.
+\newline
+The findings in the study support the hypothesis that there is a positive volatility risk premium when a hedger accounts for gamma in their portfolio. It is then shown through some complex modeling that any profit in a delta-gamma-hedged portfolio comes from this volatility premium that is being ignored in a simple delta-heded portfolio. When looking back at the previous clewlow paper, it is important to note that transactions costs with rebalancing the three positions may overcome any profit to be made. In fact, the author touches on this at the very end, and is not to go unnoticed.
+
+
+@haug2011option Option traders use (very) sophisticated heuristics, never the Black--Scholes--Merton formula
+
+The argument in this paper is that the formula that BSM came up with for options pricing has, in fact, been used for years by traders, and all BSM did was adapt it to fit economic conditions a little better by fudging the tails of the distribution to come up with a hedging strategy. The no-arbitrage pricing theory underlying Black-Scholes has been around for years, and all they did was come up with economic literature to show what options traders have known for years.
+\newline
+Throughout the paper, the authors note that options traders have been using Black-Scholes for years before it was written. It does make sense, since traders are known to develop and pass on techniques without writing them down, as it is what works for them so why would they give away their secret. I still believe that Black-Scholes has its place for options traders though, and is the base that most options markets use today.
+\newline
+We have heard in class that Black-Scholes is the most important discovery in all of economics. Though it may be the case that the underlying theory behind Black-Scholes has been seen for years, I still believe what they did to come up with the pricing formula deserves merit, and has completely enhanced options markets.
+
+@figlewski1990financial Financial Options: From theory to practice
+
+Options rely on the equilibrium price between the underlying and the option to denote the option's fair value. Since it is difficult to match buyers and sellers in practice, some market-maker stands ready to buy or sell options based on their fair value. This improves liquidity in the market, and allows Hayek's theory of knowledge to work, and prices better reflect information in the options markets.
+\newline
+Though a market-maker's bid/ask spread is super relevant, not much is known about how exactly one arrives at this spread. This paper tries to look at the thought process that market-makers exhibit and how they influence market behavior.
+\newline
+The liquidity costs of market-makers is not fixed. Depending on the position the market-maker is currently holding, they may manipulate this spread to their liking in order to most benefit them to remain in a risk-neutral position. This is why traders will ask what the bid/ask spread is and then instruct their broker to beat it. This can reduce the liquidity costs without impacting the market-makers
+\newline
+Zero-risk arbitrage opportunities are not worth a trader's time. Since they don't have zero transactions costs like market-makers do, even if they do find one, they may not be able to make the profit that a market-maker can if they find the same opportunity. This is why these arbitrage opportunities almost always find their way into the hands of market-makers.
+\newline
+Market-makers have higher spreads at the opening of trading because they have yet to see much information regarding the flow of trades that day. Looking at Hayek, we can see that this is not the most optimal way for knowledge to flow into markets. Since market-makers will introduce less liquidity in the beginning of the day, some knowledge will not find its way into markets until later.
+\newline
+We see in this paper that market-makers have a very important role in markets. They introduce liquidity, and allow knowledge to be introduced to options markets, which will also show equity traders much needed information.
+
 \newpage
